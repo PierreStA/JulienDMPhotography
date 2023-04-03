@@ -7,11 +7,13 @@ export default function NavBar() {
 
   return (
     <nav className="w-full bg-dark shadow">
-      <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
+      <div className="justify-between  mx-auto lg:max-w-7xl md:items-center md:flex ">
         <div>
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
             <a href="javascript:void(0)">
-              <h2 className="text-2xl font-bold text-white">LOGO</h2>
+              <h2 className="text-2xl font-bold text-white">
+                JulienDm.Photography
+              </h2>
             </a>
             <div className="md:hidden">
               <button
@@ -57,18 +59,21 @@ export default function NavBar() {
               navbar ? "block" : "hidden"
             }`}
           >
-            <nav className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
-              <div className="text-white hover:text-indigo-200">
+            <nav className=" justify-evenly space-y-8 md:flex md:space-x-6 md:space-y-0">
+              <div className="text-white hover:text-indigo-200 ">
                 <NavLink to="/">Home</NavLink>
               </div>
-              <div className="text-white hover:text-indigo-200">
+              <div className="text-white hover:text-indigo-200 ">
                 <NavLink to="/picturelist">Photos</NavLink>
               </div>
-              <div className="text-white hover:text-indigo-200">
-                <NavLink to="/pricing">Pricing</NavLink>
+              <div className="text-white hover:text-indigo-200 ">
+                <NavLink to="/price">Pricing</NavLink>
               </div>
               <div className="text-white hover:text-indigo-200">
-                <NavLink to="/">Home</NavLink>
+                <NavLink to="/order">Order</NavLink>
+              </div>
+              <div className="text-white hover:text-indigo-200">
+                <NavLink to="/faq">Faq</NavLink>
               </div>
             </nav>
 

@@ -16,17 +16,19 @@ function PicturesList() {
   }, []);
 
   return (
-    <div>
+    <div className=" bg-dark  h-grow">
       <Navbar />
-      <div>
-        {photos.map((product) => (
-          <PictureCard
-            key={product.id}
-            photo={product.photo}
-            price={product.price}
-            description={product.description}
-          />
-        ))}
+      <div className="">
+        <div className="flex flex-wrap h-full mx-6 ">
+          {photos.map((product) => (
+            <PictureCard
+              key={product.id}
+              photo={product.photo}
+              price={product.price}
+              description={product.description}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

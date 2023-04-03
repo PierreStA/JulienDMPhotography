@@ -1,7 +1,16 @@
 import React from "react";
 import Navbar from "../components/Navbar";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+  const navigate = useNavigate();
+
+  const handleClickStarted = () => {
+    navigate("/picturelist");
+  };
+  const handleClickMore = () => {
+    navigate("/");
+  };
   return (
     <>
       <Navbar />
@@ -23,24 +32,24 @@ function Home() {
                 auctor, ut ultricies ante lobortis.
               </p>
               <div className="flex mt-8">
-                <a
-                  href="#"
-                  className="px-4 py-2 mr-4 text-white uppercase bg-pink-500 border-2 border-transparent rounded-lg text-md hover:bg-pink-400"
+                <button
+                  onClick={handleClickStarted}
+                  className="px-4 py-2 mr-4 text-white uppercase bg-cyan-300 border-2 border-transparent rounded-lg text-md hover:bg-cyan-400"
                 >
                   Get started
-                </a>
-                <a
-                  href="#"
-                  className="px-4 py-2 text-pink-500 uppercase bg-transparent border-2 border-pink-500 rounded-lg dark:text-white hover:bg-pink-500 hover:text-white text-md"
+                </button>
+                <div
+                  onClick={handleClickMore}
+                  className="px-4 py-2 text-cyan-300 uppercase bg-transparent border-2 border-cyan-400 rounded-lg dark:text-white hover:bg-cyan-400 hover:text-white text-md"
                 >
                   Read more
-                </a>
+                </div>
               </div>
             </div>
-            <div className="relative hidden sm:block sm:w-1/3 lg:w-3/5">
+            <div className=" flex flex-col  sm:block sm:w-1/3 lg:w-3/5 ">
               <img
                 src="/photos/pieuvre.png"
-                className="max-w-xl m-auto md:max-w-sm"
+                className="max-w-xl m-auto scale-150 flex"
               />
             </div>
           </div>

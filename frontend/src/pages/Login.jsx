@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import pictureAPI from "../services/pictureApi";
 import { userCurrentContext } from "../context/userContext";
+import Navbar from "../components/Navbar";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -33,14 +34,18 @@ function Login() {
       alert("Please specify email and password");
     }
   };
+  const handleClick = () => {
+    navigate("/");
+  };
 
   return (
     <div>
-      <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 bg-gray-50">
+      <Navbar />
+      <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 bg-gradient-to-b">
         <div>
           <a href="/">
             <h3 className="text-4xl font-bold text-dark">
-              JulienDm.Photography
+              Take a deap breathe
             </h3>
           </a>
         </div>
@@ -81,6 +86,7 @@ function Login() {
               </div>
               <button
                 type="submit"
+                onClick={handleClick}
                 className="inline-flex items-center px-4 py-2 mt-4 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded-md active:bg-gray-900 false"
               >
                 Connexion

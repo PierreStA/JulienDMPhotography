@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 import pictureAPI from "../services/pictureApi";
 
@@ -26,12 +27,11 @@ function SignUp() {
 
   return (
     <div>
-      <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 bg-gray-50">
+      <Navbar />
+      <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 bg-gradient-to-b">
         <div>
           <a href="/">
-            <h3 className="text-4xl font-bold text-dark">
-              JulienDm.Photography
-            </h3>
+            <h3 className="text-4xl font-bold text-dark">Ready to jump ?</h3>
           </a>
         </div>
         <div className="w-full px-6 py-4 mt-6 overflow-hidden bg-white shadow-md sm:max-w-md sm:rounded-lg">
