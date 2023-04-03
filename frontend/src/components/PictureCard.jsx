@@ -3,11 +3,11 @@ import React from "react";
 function PictureCard({ photo, description, price }) {
   return (
     <div>
-      <div className="picture-photo mt-5">
+      <div className=" ml-5 mt-10 max-w-sm rounded overflow-hidden shadow-lg">
         <img src={`/photos/${photo}`} />
+        <div className="font-bold text-xl mb-2 mt-5">Prix: {price} $</div>
+        <div className="text-gray-700 text-base  mt-5">{description}</div>
       </div>
-      <div className="picture-price bg-orange-800 mt-5">{price}</div>
-      <div className="picture-description bg-green-800 mt-5">{description}</div>
     </div>
   );
 }

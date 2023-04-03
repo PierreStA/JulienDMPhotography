@@ -2,9 +2,11 @@ import React from "react";
 import { useState, useEffect } from "react";
 import pictureApi from "../services/pictureApi";
 import PictureCard from "../components/PictureCard";
+import Navbar from "../components/Navbar";
 
 function PicturesList() {
   const [photos, setPhotos] = useState([]);
+
   console.log(photos);
   useEffect(() => {
     pictureApi
@@ -15,14 +17,17 @@ function PicturesList() {
 
   return (
     <div>
-      {photos.map((product) => (
-        <PictureCard
-          key={product.id}
-          photo={product.photo}
-          price={product.price}
-          description={product.description}
-        />
-      ))}
+      <Navbar />
+      <div>
+        {photos.map((product) => (
+          <PictureCard
+            key={product.id}
+            photo={product.photo}
+            price={product.price}
+            description={product.description}
+          />
+        ))}
+      </div>
     </div>
   );
 }

@@ -15,9 +15,12 @@ function Home() {
                 <span className="text-5xl sm:text-7xl">Wild</span>
               </h1>
               <p className="text-sm text-gray-700 sm:text-base dark:text-white">
-                Dimension of reality that makes change possible and
-                understandable. An indefinite and homogeneous environment in
-                which natural events and human existence take place.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+                nulla magna, porttitor ut volutpat sit amet, gravida at mi.
+                Etiam iaculis arcu orci, at sodales nibh elementum sit amet.
+                Cras venenatis blandit est, ut porttitor augue. Nullam auctor
+                dolor varius tincidunt tristique. Donec sodales lacus in lacus
+                auctor, ut ultricies ante lobortis.
               </p>
               <div className="flex mt-8">
                 <a
@@ -36,8 +39,8 @@ function Home() {
             </div>
             <div className="relative hidden sm:block sm:w-1/3 lg:w-3/5">
               <img
-                src="/images/object/10.png"
-                className="max-w-xs m-auto md:max-w-sm"
+                src="/photos/pieuvre.png"
+                className="max-w-xl m-auto md:max-w-sm"
               />
             </div>
           </div>
