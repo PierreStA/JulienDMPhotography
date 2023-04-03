@@ -41,20 +41,18 @@ function Login() {
   return (
     <div>
       <Navbar />
-      <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 bg-gradient-to-b">
-        <div>
-          <a href="/">
-            <h3 className="text-4xl font-bold text-dark">
-              Take a deap breathe
-            </h3>
-          </a>
-        </div>
-        <div className="w-full px-6 py-4 mt-6 overflow-hidden bg-white shadow-md sm:max-w-md sm:rounded-lg">
-          <form onSubmit={handleSubmit}>
-            <div>
+      <div className="flex flex-row items-center min-h-screen pt-6 sm:justify-center sm:pt-0 bg-gray-800">
+        <img
+          src="/photos/scaphandre.png"
+          className="hidden md:block max-w-xl mr-20 scale-100 "
+        />
+        <div></div>
+        <div className="w-full px-6 py-4 mt-6 overflow-hidden bg-gray-800 shadow-xl border-solid sm:max-w-md sm:rounded-lg">
+          <form className="bg-gray-800 " onSubmit={handleSubmit}>
+            <div className="bg">
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-700 undefined"
+                className="block text-sm font-medium text-gray-400 undefined"
               >
                 Email
               </label>
@@ -63,7 +61,7 @@ function Login() {
                   onChange={(e) => setEmail(e.target.value)}
                   type="email"
                   name="email"
-                  className=""
+                  className="block w-2/3 rounded-md"
                   id="email"
                 />
               </div>
@@ -71,7 +69,7 @@ function Login() {
             <div className="mt-4">
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-gray-700 undefined"
+                className="block text-sm font-medium text-gray-400 "
               >
                 Password
               </label>
@@ -80,7 +78,7 @@ function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                   type="password"
                   name="password"
-                  className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                  className=" block w-2/3 rounded-md"
                   id="password"
                 />
               </div>

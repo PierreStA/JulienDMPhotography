@@ -28,18 +28,18 @@ function SignUp() {
   return (
     <div>
       <Navbar />
-      <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 bg-gradient-to-b">
+      <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 bg-gray-800 ">
         <div>
           <a href="/">
             <h3 className="text-4xl font-bold text-dark">Ready to jump ?</h3>
           </a>
         </div>
-        <div className="w-full px-6 py-4 mt-6 overflow-hidden bg-white shadow-md sm:max-w-md sm:rounded-lg">
+        <div className="w-full px-6 py-4 mt-6 overflow-hidden  shadow-md sm:max-w-md sm:rounded-lg">
           <form onSubmit={handleForm}>
             <div>
               <label
                 htmlFor="name"
-                className="block text-sm font-medium text-gray-700 undefined"
+                className="block text-sm font-medium text-gray-400 undefined"
               >
                 Name
               </label>
@@ -55,7 +55,7 @@ function SignUp() {
             <div className="mt-4">
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-700 undefined"
+                className="block text-sm font-medium text-gray-400 undefined"
               >
                 Email
               </label>
@@ -71,7 +71,7 @@ function SignUp() {
             <div className="mt-4">
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-gray-700 undefined"
+                className="block text-sm font-medium text-gray-400 undefined"
               >
                 Password
               </label>
@@ -93,7 +93,7 @@ function SignUp() {
               </a>
               <button
                 type="submit"
-                className="inline-flex items-center px-4 py-2 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded-md active:bg-gray-900 false"
+                className="inline-flex items-center px-4 py-2 ml-4 text-xs font-semibold tracking-widest text-gray-400 uppercase transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded-md active:bg-gray-900 false"
               >
                 Register
               </button>

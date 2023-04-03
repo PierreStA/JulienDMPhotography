@@ -7,11 +7,11 @@ export default function NavBar() {
 
   return (
     <nav className="w-full bg-dark shadow">
-      <div className="justify-between  mx-auto lg:max-w-7xl md:items-center md:flex ">
+      <div className="justify-between mr-10   md:items-center md:flex ">
         <div>
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
             <a href="javascript:void(0)">
-              <h2 className="text-2xl font-bold text-white">
+              <h2 className="text-2xl font-bold text-white ml-8">
                 JulienDm.Photography
               </h2>
             </a>
@@ -59,14 +59,14 @@ export default function NavBar() {
               navbar ? "block" : "hidden"
             }`}
           >
-            <nav className=" justify-evenly space-y-8 md:flex md:space-x-6 md:space-y-0">
+            <nav className=" justify-evenly space-y-8 md:flex md:space-x-6 md:space-y-0 text-lg">
               <div className="text-white hover:text-indigo-200 ">
                 <NavLink to="/">Home</NavLink>
               </div>
-              <div className="text-white hover:text-indigo-200 ">
+              <div className="text-white hover:text-indigo-200">
                 <NavLink to="/picturelist">Photos</NavLink>
               </div>
-              <div className="text-white hover:text-indigo-200 ">
+              <div className="text-white hover:text-indigo-200">
                 <NavLink to="/price">Pricing</NavLink>
               </div>
               <div className="text-white hover:text-indigo-200">
@@ -88,17 +88,11 @@ export default function NavBar() {
           </div>
         </div>
         <div className="hidden space-x-2 md:inline-block">
-          <a
-            href="javascript:void(0)"
-            className="px-4 py-2 text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
-          >
-            Sign in
+          <a className="px-4 py-2 text-white bg-gray-600 rounded-md shadow hover:bg-gray-800">
+            <NavLink to="/login">Sign in</NavLink>
           </a>
-          <a
-            href="javascript:void(0)"
-            className="px-4 py-2 text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
-          >
-            Sign up
+          <a className="px-4 py-2 text-gray-800 bg-white rounded-md shadow hover:bg-gray-100">
+            <NavLink to="/signup">Sign up</NavLink>
           </a>
         </div>
       </div>
