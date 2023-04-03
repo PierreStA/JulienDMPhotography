@@ -21,7 +21,7 @@ const findByEmail = async (email) => {
     return user;
   } catch (e) {
     console.log(e);
-    throw new SQLGenericError();
+    // throw new SQLGenericError();
   }
 };
 
