@@ -19,7 +19,7 @@ function PicturesList() {
     <div className=" bg-dark h-grow h-full">
       <Navbar />
       <div className="flex flex-wrap bg-dark  ">
-        <div className="flex flex-wrap justify justify-evenly shadow-xl border-zinc-950">
+        <div className="flex flex-wrap justify justify-evenly  border-zinc-950">
           {photos.map((product) => (
             <PictureCard
               key={product.id}

@@ -29,11 +29,11 @@ function SignUp() {
     <div>
       <Navbar />
       <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 bg-gray-800 ">
-        <div>
-          <a href="/">
-            <h3 className="text-4xl font-bold text-dark">Ready to jump ?</h3>
-          </a>
-        </div>
+        <h1 className="text-lg text-cyan-400">
+          {" "}
+          « On aime ce qui nous a émerveillés, et on protège ce que l’on aime. »
+        </h1>
+        <p className="text-cyan-800">JY Cousteau</p>
         <div className="w-full px-6 py-4 mt-6 overflow-hidden  shadow-md sm:max-w-md sm:rounded-lg">
           <form onSubmit={handleForm}>
             <div>
@@ -48,7 +48,7 @@ function SignUp() {
                   onChange={(e) => setName(e.target.value)}
                   type="text"
                   name="name"
-                  className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                  className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-black"
                 />
               </div>
             </div>
@@ -64,7 +64,7 @@ function SignUp() {
                   onChange={(e) => setEmail(e.target.value)}
                   type="email"
                   name="email"
-                  className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                  className="block w-full mt-1 border-gray-300 rounded-md shadow-sm "
                 />
               </div>
             </div>
@@ -80,7 +80,7 @@ function SignUp() {
                   onChange={(e) => setPassword(e.target.value)}
                   type="password"
                   name="password"
-                  className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                  className="block w-full mt-1 border-gray-300 rounded-md shadow-sm"
                 />
               </div>
             </div>
