@@ -5,14 +5,15 @@ function Order() {
   return (
     <div>
       <Navbar />
-      <div className="bg-white dark:bg-gray-900 h-screen">
+      <div className="bg-white dark:bg-gray-800 h-screen">
         <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
-          <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">
-            Contact Us
+          <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-cyan-400">
+            Contact Me
           </h2>
           <p className="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">
-            Got a technical issue? Want to send feedback about a beta feature?
-            Need details about our Business plan? Let us know.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco
           </p>
           <form action="#" className="space-y-8">
             <div>
@@ -41,7 +42,7 @@ function Order() {
                 type="text"
                 id="subject"
                 className="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
-                placeholder="Let us know how we can help you"
+                placeholder="Let me know how i can help you"
                 required
               ></input>
             </div>

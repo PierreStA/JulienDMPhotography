@@ -73,7 +73,7 @@ function Admin() {
                   htmlFor="text"
                   className="block text-sm font-medium text-gray-400 undefined"
                 >
-                  description
+                  Description
                 </label>
                 <div className="flex flex-col ">
                   <input
@@ -110,7 +110,7 @@ function Admin() {
                   htmlFor="text"
                   className="block text-sm font-medium text-gray-400 "
                 >
-                  photo
+                  Photo
                 </label>
                 <div className="flex flex-col items-start">
                   <input
@@ -141,7 +141,7 @@ function Admin() {
                   htmlFor="text"
                   className="block text-sm font-medium text-gray-400 undefined"
                 >
-                  description
+                  Description
                 </label>
                 <div className="flex flex-col ">
                   <input
@@ -161,15 +161,14 @@ function Admin() {
                   htmlFor="text"
                   className="block text-sm font-medium text-gray-400 "
                 >
-                  Id
+                  Numéro
                 </label>
                 <div className="flex flex-col items-start">
                   <input
                     onChange={(e) => setPrice(e.target.value)}
                     type="text"
-                    name="Id"
+                    name="Numéro"
                     className=" block w-2/3 rounded-md"
-                    id="Id"
                   />
                 </div>
               </div>
@@ -178,7 +177,7 @@ function Admin() {
                   htmlFor="text"
                   className="block text-sm font-medium text-gray-400 "
                 >
-                  photo
+                  Photo
                 </label>
                 <div className="flex flex-col items-start">
                   <input
@@ -195,7 +194,7 @@ function Admin() {
                   htmlFor="photo"
                   className="block text-sm font-medium text-gray-400 "
                 >
-                  photo
+                  Photo
                 </label>
                 <select
                   value={idProduct}
@@ -223,7 +222,7 @@ function Admin() {
               <button
                 type="submit"
                 onClick={HandleDeleteProduct}
-                className="inline-flex items-center px-4 py-2 mt-4 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded-md active:bg-gray-900 false"
+                className=" ml-20 inline-flex items-center px-4 py-2 mt-4  text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded-md active:bg-gray-900 false"
               >
                 Delete
               </button>
