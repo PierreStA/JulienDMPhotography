@@ -8,7 +8,8 @@ import Navbar from "../components/Navbar";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setName, setUserEmail, setUserId, name } = userCurrentContext();
+  const { setName, setUserEmail, setUserId, name, userEmail } =
+    userCurrentContext();
 
   const navigate = useNavigate();
 
@@ -24,8 +25,8 @@ function Login() {
           setUserId(res.data.userId);
 
           localStorage.setItem("userName", JSON.stringify(res.data.name)); // set dans le local storage
-          localStorage.setItem("userEmail", JSON.stringify(res.data.name));
-          localStorage.setItem("userId", JSON.stringify(res.data.name));
+          localStorage.setItem("userEmail", JSON.stringify(res.data.email));
+          localStorage.setItem("userId", JSON.stringify(res.data.id));
           console.log(name);
           navigate("/");
         })
@@ -34,6 +35,7 @@ function Login() {
       alert("Please specify email and password");
     }
   };
+  console.log(userEmail);
   return (
     <div>
       <Navbar />
