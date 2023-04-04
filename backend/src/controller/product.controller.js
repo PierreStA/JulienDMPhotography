@@ -1,4 +1,4 @@
-const { findAll, findOne, addOne, updateOne} = require("../model/product.model.js");
+const { findAll, findOne, addOne, updateOne, deleteOne} = require("../model/product.model.js");
 
 const getAll = async(req,res, next)=>{
     try{ 
@@ -37,6 +37,21 @@ const createOne = async (req, res, next) => {
   }
 };
 
+const deleteProduct = async function (req, res, next) {
+  try {
+    const productId = req.params.id;
+    const [result] = await deleteOne(productId);
+    res.status(200).json({ message: `Le produit avec l'ID ${productId} a été supprimé.` });
+    if (result.affectedRows === 0) {
+      res.sendStatus(404);
+    } else {
+      res.sendStatus(204);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 const editOne = async (req, res) => {
   try {
     const product = req.body;
@@ -56,4 +71,5 @@ const editOne = async (req, res) => {
 };
 
 
-module.exports ={getAll, getOne,createOne, editOne};
+
+module.exports ={getAll, getOne,createOne, editOne, deleteProduct};

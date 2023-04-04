@@ -75,6 +75,9 @@ export default function NavBar() {
               <div className="text-white hover:text-indigo-200">
                 <NavLink to="/faq">Faq</NavLink>
               </div>
+              <div className="text-white hover:text-indigo-200">
+                <NavLink to="/admin">Admin</NavLink>
+              </div>
             </nav>
 
             <div className="mt-3 space-y-2 lg:hidden md:inline-block">

@@ -38,7 +38,7 @@ const addOne = async (product) => {
 const updateOne = async function (product) {
   try {
     const result = await db.query(
-       `UPDATE \`product\` SET description = ?, price = ?, photo = ? WHERE id = ?`,
+       "UPDATE `product` SET description = ?, price = ?, photo = ? WHERE id = ?",
       [product.description, product.price, product.photo, product.id]
     );
     return result;
@@ -47,4 +47,17 @@ const updateOne = async function (product) {
   }
 };
 
-module.exports = { findAll, findOne,addOne ,updateOne};
+const deleteOne = async function (productId) {
+  try {
+    const result = await db.query(
+      "DELETE FROM `product` WHERE id = ?",
+      [productId]
+    );
+    return result;
+  } catch (error) {
+    throw new Error(`Impossible de supprimer le produit : ${error}`);
+  }
+};
+
+
+module.exports = { findAll, findOne,addOne ,updateOne, deleteOne};

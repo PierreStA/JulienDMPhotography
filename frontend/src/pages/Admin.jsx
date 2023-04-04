@@ -4,10 +4,11 @@ import pictureApi from "../services/pictureApi";
 import Navbar from "../components/Navbar";
 
 function Admin() {
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState([]);
   const [photo, setPhoto] = useState("");
   const [productData, setProductData] = useState([]);
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState([]);
+  const [idProduct, setIdProduct] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,7 +27,7 @@ function Admin() {
   };
   useEffect(() => {
     pictureApi
-      .get("/api/product")
+      .get("api/product")
       .then((res) => setProductData(res.data))
       .catch((err) => console.error(err));
   }, []);
@@ -35,7 +36,7 @@ function Admin() {
     e.preventDefault();
     if (description && price && photo) {
       pictureApi
-        .put("api/product", {
+        .put(`api/product/${idProduct}`, {
           description,
           price: parseFloat(price[0]),
           photo,
@@ -47,11 +48,23 @@ function Admin() {
     }
   };
 
+  const HandleDeleteProduct = (e) => {
+    e.preventDefault();
+    pictureApi
+      .delete(`api/product/${idProduct}`)
+      .then(() => {})
+      .catch((err) => console.log(err.response.data));
+  };
+
+  function handleSetProduct(e) {
+    setIdProduct(e.target.value);
+  }
+
   return (
-    <>
+    <div className="bg-dark h-grow w-full">
       <div>
         <Navbar />
-        <div className="w-full px-6 py-4 mt-6 overflow-hidden bg-gray-800 shadow-xl border-solid sm:max-w-md sm:rounded-lg">
+        <div className="w-full h-grow px-6 py-4 mt-6 overflow-hidden bg-dark shadow-xl border-solid sm:max-w-md sm:rounded-lg">
           <form className="bg-gray-800 " onSubmit={handleSubmit}>
             <div className="bg">
               <label
@@ -118,7 +131,7 @@ function Admin() {
         </div>
       </div>
       <div className="w-full px-6 py-4 mt-6 overflow-hidden bg-gray-800 shadow-xl border-solid sm:max-w-md sm:rounded-lg">
-        <form className="bg-gray-800 " onSubmit={handleSubmit}>
+        <form className="bg-gray-800 " onSubmit={handleUpdate}>
           <div className="bg">
             <label
               htmlFor="text"
@@ -156,7 +169,7 @@ function Admin() {
               />
             </div>
           </div>
-          {/* <div className="mt-4">
+          <div className="mt-4">
             <label
               htmlFor="text"
               className="block text-sm font-medium text-gray-400 "
@@ -172,7 +185,7 @@ function Admin() {
                 id="photo"
               />
             </div>
-          </div> */}
+          </div>
           <div className="mt-4">
             <label
               htmlFor="photo"
@@ -181,20 +194,20 @@ function Admin() {
               photo
             </label>
             <select
-              onChange={(e) => setPhoto(e.target.value)}
+              value={idProduct}
+              onChange={handleSetProduct}
               className="pl-2 text-black h-10 rounded-lg bg-gray-200 shadow-lg shadow-blue-500/50 "
             >
               {productData.map((product) => (
                 <option
                   className="text-black"
-                  value={product.photo}
+                  value={product.id}
                   key={product.photo}
                 >
                   {product.photo}
                 </option>
               ))}
             </select>
-            {/* <option value="">---</option> */}
           </div>
           <button
             type="submit"
@@ -203,9 +216,16 @@ function Admin() {
           >
             Update
           </button>
+          <button
+            type="submit"
+            onClick={HandleDeleteProduct}
+            className="inline-flex items-center px-4 py-2 mt-4 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded-md active:bg-gray-900 false"
+          >
+            Delete
+          </button>
         </form>
       </div>
-    </>
+    </div>
   );
 }
 
