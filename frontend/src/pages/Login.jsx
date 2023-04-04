@@ -8,7 +8,7 @@ import Navbar from "../components/Navbar";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setName, setUserEmail, setUserId } = userCurrentContext();
+  const { setName, setUserEmail, setUserId, name } = userCurrentContext();
 
   const navigate = useNavigate();
 
@@ -19,14 +19,14 @@ function Login() {
       pictureAPI
         .post("/api/login", { email, password })
         .then((res) => {
-          // setUser(res.data);
-          setUserName(res.data.name);
+          setName(res.data.name);
           setUserEmail(res.data.email);
           setUserId(res.data.userId);
 
           localStorage.setItem("userName", JSON.stringify(res.data.name)); // set dans le local storage
           localStorage.setItem("userEmail", JSON.stringify(res.data.name));
           localStorage.setItem("userId", JSON.stringify(res.data.name));
+          console.log(name);
           navigate("/");
         })
         .catch((err) => console.log(err.response.data));
@@ -34,10 +34,6 @@ function Login() {
       alert("Please specify email and password");
     }
   };
-  const handleClick = () => {
-    navigate("/");
-  };
-
   return (
     <div>
       <Navbar />
@@ -84,16 +80,12 @@ function Login() {
               </div>
               <button
                 type="submit"
-                onClick={handleClick}
                 className="inline-flex items-center px-4 py-2 mt-4 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded-md active:bg-gray-900 false"
               >
                 Connexion
               </button>
               <div className="flex items-center justify-end mt-4">
-                <a
-                  className="text-sm text-gray-600 underline hover:text-gray-900"
-                  href="#"
-                >
+                <a className="text-sm text-gray-600 underline hover:text-gray-900">
                   Pas encore inscrit ?
                 </a>
               </div>

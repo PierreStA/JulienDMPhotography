@@ -8,6 +8,7 @@ import SignUp from "./pages/SignUp";
 import Price from "./pages/Price";
 import Faq from "./pages/Faq";
 import Order from "./pages/Order";
+import Admin from "./pages/Admin";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/order" element={<Order />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
       {/* </UserContextProvider> */}
     </BrowserRouter>

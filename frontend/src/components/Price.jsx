@@ -1,4 +1,6 @@
-export default () => {
+import React from "react";
+
+function price() {
   const plans = [
     {
       name: " 1 Picture",
@@ -74,4 +76,5 @@ export default () => {
       </div>
     </section>
   );
-};
+}
+export default price;

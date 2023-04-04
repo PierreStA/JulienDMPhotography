@@ -32,11 +32,11 @@ const addOne = async (user) => {
 
     try{
 
-        const{ name, email, password } = user
-        const [result] = await db.query("insert into `user` (name, email, password) values (?,?,?)", [name, email, password]
+        const{ name, email, password,  } = user
+        const [result] = await db.query("insert into `user` (name, email, password) values (?,?,?)", [name, email, password ]
         );
 
-    return { id: result.insertId, name, email };  /*id: result.insertId clé SQL2 qui renvoie l'id de lutilisateur crée */
+    return { id: result.insertId, name, email};  /*id: result.insertId clé SQL2 qui renvoie l'id de lutilisateur crée */
     } catch(e) {
          console.log(e);
     }
