@@ -38,7 +38,7 @@ function Price() {
               Buy Now
             </button>
           </div>
-          <div className="py-12 sm:py-12 md:py-6 lg:py-6 xl:py-6 px-8 w-full md:max-w-min sm:w-full bg-blue-900 transform scale-1 sm:scale-1 md:scale-105 lg:scale-105 xl:scale-105 z-40  shadow-none sm:shadow-none md:shadow-xl lg:shadow-xl xl:shadow-xl">
+          <div className="py-12 sm:py-12 md:py-6 lg:py-6 xl:py-6 px-8 w-full md:max-w-min sm:w-full bg-blue-900 transform scale-1 sm:scale-1 md:scale-105  z-40 ">
             <h1 className="text-purple-200 font-semibold text-xl ">
               From 3 to 10
             </h1>

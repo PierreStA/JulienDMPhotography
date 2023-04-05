@@ -18,7 +18,7 @@ function Home() {
         <div className="relative z-20 flex items-center overflow-hidden bg-white dark:bg-gray-800">
           <div className="container relative flex px-6 py-16 mx-auto">
             <div className="relative z-20 flex flex-col sm:w-2/3 lg:w-2/5">
-              <span className="w-20 h-2 mb-12 bg-gray-800 dark:bg-white"></span>
+              <span className="w-[13rem] h-2 mb-12 bg-gray-800 dark:bg-white"></span>
               <h1 className="flex flex-col text-6xl font-black leading-none text-gray-800 uppercase font-bebas-neue sm:text-8xl dark:text-white">
                 Explore the
                 <span className="text-5xl sm:text-7xl">Wild</span>
