@@ -87,7 +87,7 @@ function AdminPost() {
               onClick={handleSubmit}
               className="inline-flex items-center px-4 py-2 mt-4 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded-md active:bg-gray-900 false"
             >
-              Création
+              Create
             </button>
           </form>
         </div>

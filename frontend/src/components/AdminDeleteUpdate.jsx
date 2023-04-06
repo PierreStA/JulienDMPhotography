@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import pictureApi from "../services/pictureApi";
 
-function AdminPutUpdate() {
+function AdminDeleteUpdate() {
   const [photo, setPhoto] = useState("");
   const [productData, setProductData] = useState([]);
   const [description, setDescription] = useState("");
@@ -146,4 +146,4 @@ function AdminPutUpdate() {
   );
 }
 
-export default AdminPutUpdate;
+export default AdminDeleteUpdate;
