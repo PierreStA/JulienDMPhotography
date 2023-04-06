@@ -1,6 +1,6 @@
 import React from "react";
 
-function faqlist() {
+function Faqlist() {
   const faqsList = [
     {
       q: "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
@@ -42,4 +42,4 @@ function faqlist() {
   );
 }
 
-export default faqlist;
+export default Faqlist;
