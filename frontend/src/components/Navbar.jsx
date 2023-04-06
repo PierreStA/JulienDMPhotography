@@ -1,11 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { userCurrentContext } from "../context/userContext";
 
 export default function NavBar() {
   const [navbar, setNavbar] = useState(false);
-  const { userEmail } = userCurrentContext();
 
   return (
     <nav className="w-full bg-dark shadow">

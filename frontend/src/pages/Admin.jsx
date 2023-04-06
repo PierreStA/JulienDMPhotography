@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import AdminPost from "../components/AdminPost";
-import AdminPutUpdate from "../components/AdminPutUpdate";
+import AdminDeleteUpdate from "../components/AdminDeleteUpdate";
 
 function Admin() {
   return (
@@ -9,7 +9,7 @@ function Admin() {
       <Navbar />
       <div className="flex flex-wrap mt-10 justify-evenly">
         <AdminPost />
-        <AdminPutUpdate />
+        <AdminDeleteUpdate />
       </div>
       <img
         src="/photos/whalelogo.png"
