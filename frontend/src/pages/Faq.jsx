@@ -1,5 +1,5 @@
 import NavBar from "../components/Navbar";
-import Faqlist from "../components/Faqlist";
+import Faqlist from "../components/Faqlist.jsx";
 function Faq() {
   return (
     <>
