@@ -1,10 +1,24 @@
 import React from "react";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import pictureAPI from "../services/pictureApi";
+import { userCurrentContext } from "../context/userContext";
 
 export default function NavBar() {
+  const { setUserRole } = userCurrentContext();
   const [navbar, setNavbar] = useState(false);
-
+  const navigate = useNavigate();
+  const handleDisconnection = () => {
+    pictureAPI
+      .get("/api/logout")
+      .then(
+        () => localStorage.setItem("userRole", JSON.stringify("")),
+        setUserRole(""),
+        navigate("/")
+      )
+      .catch((err) => console.log(err));
+  };
+  console.log(localStorage.getItem("userRole"));
   return (
     <nav className="w-full bg-dark shadow">
       <div className="justify-between mr-10   md:items-center md:flex ">
@@ -84,8 +98,14 @@ export default function NavBar() {
               <div className="inline-block w-full px-4 py-2 text-center text-white bg-gray-600 rounded-md shadow hover:bg-gray-800">
                 <NavLink to="/login">Sign in</NavLink>
               </div>
-              <div className="inline-block w-full px-4 py-2 text-center text-gray-800 bg-white rounded-md shadow hover:bg-gray-100">
+              <div className="inline-block w-full px-4 py-2 text-center text-gray-800 bg-gray-400 rounded-md shadow hover:bg-gray-500">
                 <NavLink to="/signup">Sign up</NavLink>
+              </div>
+              <div
+                onClick={handleDisconnection}
+                className="inline-block w-full px-4 py-2 text-center text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
+              >
+                Logout
               </div>
             </div>
           </div>
@@ -94,8 +114,14 @@ export default function NavBar() {
           <a className="px-4 py-2 text-white bg-gray-600 rounded-md shadow hover:bg-gray-800">
             <NavLink to="/login">Sign in</NavLink>
           </a>
-          <a className="px-4 py-2 text-gray-800 bg-white rounded-md shadow hover:bg-gray-100">
+          <a className="px-4 py-2 text-gray-800 bg-gray-400 rounded-md shadow hover:bg-gray-500">
             <NavLink to="/signup">Sign up</NavLink>
+          </a>
+          <a
+            onClick={handleDisconnection}
+            className="px-4 py-2 text-gray-800 bg-white rounded-md shadow hover:bg-gray-200"
+          >
+            Logout
           </a>
         </div>
       </div>

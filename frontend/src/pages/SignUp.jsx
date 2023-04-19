@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import { userCurrentContext } from "../context/userContext";
 
 import pictureAPI from "../services/pictureApi";
 
@@ -9,6 +10,7 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const { userRole } = userCurrentContext();
 
   const navigate = useNavigate();
 
@@ -24,7 +26,7 @@ function SignUp() {
       alert("You must provide a name, an email and a password");
     }
   };
-
+  console.log(userRole);
   return (
     <div>
       <Navbar />

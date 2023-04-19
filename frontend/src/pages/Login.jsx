@@ -8,8 +8,7 @@ import Navbar from "../components/Navbar";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setName, setUserEmail, setUserId, name, userEmail } =
-    userCurrentContext();
+  const { setUserRole } = userCurrentContext();
 
   const navigate = useNavigate();
 
@@ -20,14 +19,14 @@ function Login() {
       pictureAPI
         .post("/api/login", { email, password })
         .then((res) => {
-          setName(res.data.name);
-          setUserEmail(res.data.email);
-          setUserId(res.data.userId);
+          const role = { roles: JSON.parse(res.data.roles) };
 
-          localStorage.setItem("userName", JSON.stringify(res.data.name)); // set dans le local storage
-          localStorage.setItem("userEmail", JSON.stringify(res.data.email));
-          localStorage.setItem("userId", JSON.stringify(res.data.id));
-          console.log(name);
+          setUserRole(role);
+
+          localStorage.setItem("userRole", JSON.stringify(role));
+          console.log(res.data.email);
+          console.log(role);
+          console.log(localStorage.getItem("userRole"));
           navigate("/");
         })
         .catch((err) => console.log(err.response.data));
@@ -35,7 +34,7 @@ function Login() {
       alert("Please specify email and password");
     }
   };
-  console.log(userEmail);
+
   return (
     <div>
       <Navbar />

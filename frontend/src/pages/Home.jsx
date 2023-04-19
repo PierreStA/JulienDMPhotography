@@ -11,6 +11,7 @@ function Home() {
   const handleClickMore = () => {
     navigate("/");
   };
+
   return (
     <>
       <Navbar />

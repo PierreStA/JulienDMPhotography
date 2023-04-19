@@ -9,6 +9,10 @@ export const UserContextProvider = ({ children }) => {
   const [userEmail, setUserEmail] = useState(
     JSON.parse(localStorage.getItem("email"))
   );
+  const [userRole, setUserRole] = useState(
+    JSON.parse(localStorage.getItem("userRole"))
+  );
+
   const [userId, setUserId] = useState(localStorage.getItem("userId"));
 
   return (
@@ -20,13 +24,11 @@ export const UserContextProvider = ({ children }) => {
         setUserEmail,
         userId,
         setUserId,
+        userRole,
+        setUserRole,
       }}
     >
       {children}
     </CurrentUserContext.Provider>
   );
 };
-
-// UserContextProvider.propTypes = {
-//   children: PropTypes.node.isRequired,
-// };

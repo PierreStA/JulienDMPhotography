@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import { UserContextProvider } from "./context/userContext";
+import { userCurrentContext } from "./context/userContext";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -11,9 +12,11 @@ import Order from "./pages/Order";
 import Admin from "./pages/Admin";
 
 function App() {
+  const { userRole } = userCurrentContext();
+  console.log(userRole);
+
   return (
     <BrowserRouter>
-      {/* <UserContextProvider> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/picturelist" element={<PicturesList />} />
@@ -22,9 +25,16 @@ function App() {
         <Route path="/order" element={<Order />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route
+          element={
+            <ProtectedRoute
+              isAllowed={userRole && userRole.roles.includes("admin")}
+            />
+          }
+        >
+          <Route path="/admin" element={<Admin />} />
+        </Route>
       </Routes>
-      {/* </UserContextProvider> */}
     </BrowserRouter>
   );
 }
