@@ -4,7 +4,7 @@ function Faq() {
   return (
     <>
       <NavBar />
-      <section className="py-14 bg-gray-800">
+      <section className="py-14 bg-gray-800 h-full">
         <div className="max-w-screen-xl mt-20 mx-auto px-4 gap-12 md:flex md:px-8">
           <div className="flex-1">
             <div className="max-w-lg">

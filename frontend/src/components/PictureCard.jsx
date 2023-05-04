@@ -3,7 +3,7 @@ import React from "react";
 function PictureCard({ photo, description, price }) {
   return (
     <div>
-      <div className=" ml-5 mt-10 max-w-xl rounded overflow-hidden shadow-lg bg-dark-blue   ">
+      <div className=" mx-3 mt-10 max-w-xl rounded-xl overflow-hidden shadow-lg bg-dark-blue transform:scale-150 ">
         <div>
           <img src={`/photos/${photo}`} />
         </div>
