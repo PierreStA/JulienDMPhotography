@@ -3,6 +3,7 @@ import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import pictureAPI from "../services/pictureApi";
 import { userCurrentContext } from "../context/userContext";
+import { toast } from "react-toastify";
 
 export default function NavBar() {
   const { setUserRole } = userCurrentContext();
@@ -14,11 +15,12 @@ export default function NavBar() {
       .then(
         () => localStorage.setItem("userRole", JSON.stringify("")),
         setUserRole(""),
+        toast.success("You are disconnected"),
         navigate("/")
       )
       .catch((err) => console.log(err));
   };
-  console.log(localStorage.getItem("userRole"));
+  // console.log(localStorage.getItem("userRole"));
   return (
     <nav className="w-full bg-dark shadow">
       <div className="justify-between mr-10   md:items-center md:flex ">

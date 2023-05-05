@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import pictureApi from "../services/pictureApi";
+import { toast } from "react-toastify";
 
 function AdminPost() {
   const [photo, setPhoto] = useState("");
@@ -16,10 +17,12 @@ function AdminPost() {
           price: parseFloat(price[0]),
           photo,
         })
-        .then(() => {})
+        .then(() => {
+          toast.success("Picture posted");
+        })
         .catch((err) => console.log(err.response.data));
     } else {
-      alert("Please specify a description, a price and a photo");
+      toast.error("An error occured, please try again");
     }
   };
 

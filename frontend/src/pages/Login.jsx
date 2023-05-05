@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import pictureAPI from "../services/pictureApi";
 import { userCurrentContext } from "../context/userContext";
@@ -16,21 +18,24 @@ function Login() {
     e.preventDefault();
 
     if (email && password) {
-      pictureAPI
-        .post("/api/login", { email, password })
-        .then((res) => {
-          const role = { roles: JSON.parse(res.data.roles) };
+      pictureAPI.post("/api/login", { email, password }).then((res) => {
+        const role = { roles: JSON.parse(res.data.roles) };
 
-          setUserRole(role);
+        setUserRole(role);
 
-          localStorage.setItem("userRole", JSON.stringify(role));
-          console.log(res.data.email);
-          console.log(role);
-          console.log(localStorage.getItem("userRole"));
-          navigate("/");
-        })
-        .catch((err) => console.log(err.response.data));
+        localStorage.setItem("userRole", JSON.stringify(role));
+        // console.log(res.data.email);
+        console.log(name);
+        // console.log(localStorage.getItem("userRole"));
+        toast.success("You are connecte");
+        navigate("/");
+      });
+      // .catch(
+      //   (err) => console.log(err.response.data),
+      //   toast.error("Please specify email and password")
+      // );
     } else {
+      toast.error("Please specify email and password");
       alert("Please specify email and password");
     }
   };

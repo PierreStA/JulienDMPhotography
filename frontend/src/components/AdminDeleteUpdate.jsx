@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import pictureApi from "../services/pictureApi";
+import { toast } from "react-toastify";
 
 function AdminDeleteUpdate() {
   const [photo, setPhoto] = useState("");
@@ -25,7 +26,9 @@ function AdminDeleteUpdate() {
           price: parseFloat(price[0]),
           photo,
         })
-        .then(() => {})
+        .then(() => {
+          toast.success("Picture updated");
+        })
         .catch((err) => console.log(err.response.data));
     } else {
       alert("Please specify a description, a price and a photo");
@@ -36,8 +39,13 @@ function AdminDeleteUpdate() {
     e.preventDefault();
     pictureApi
       .delete(`api/product/${idProduct}`)
-      .then(() => {})
-      .catch((err) => console.log(err.response.data));
+      .then(() => {
+        toast.success("Picture deleted");
+      })
+      .catch(
+        (err) => console.log(err.response.data),
+        toast.error("An error occured, please try again")
+      );
   };
 
   function handleSetProduct(e) {

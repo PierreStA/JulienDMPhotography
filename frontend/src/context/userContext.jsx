@@ -14,7 +14,7 @@ export const UserContextProvider = ({ children }) => {
   );
 
   const [userId, setUserId] = useState(localStorage.getItem("userId"));
-
+  console.log(name);
   return (
     <CurrentUserContext.Provider
       value={{

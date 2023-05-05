@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { userCurrentContext } from "./context/userContext";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { ToastContainer } from "react-toastify";
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -35,6 +36,7 @@ function App() {
           <Route path="/admin" element={<Admin />} />
         </Route>
       </Routes>
+      <ToastContainer />
     </BrowserRouter>
   );
 }
