@@ -11,7 +11,6 @@ function PictureCard({ photo, description, number, onClick }) {
           className="cursor-pointer"
           onClick={onClick}
         />
-
         <div className="text-white text-base m-5">{description}</div>
       </div>
     </div>
