@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { userCurrentContext } from "../context/userContext";
+import { Link } from "react-router-dom";
 
 import pictureAPI from "../services/pictureApi";
 
@@ -87,12 +88,13 @@ function SignUp() {
               </div>
             </div>
             <div className="flex items-center justify-end mt-4">
-              <a
+              <Link
+                to="/login"
                 className="text-sm text-gray-600 underline hover:text-gray-900"
                 href="#"
               >
                 Already registered?
-              </a>
+              </Link>
               <button
                 type="submit"
                 className="inline-flex items-center px-4 py-2 ml-4 text-xs font-semibold tracking-widest text-gray-400 uppercase transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded-md active:bg-gray-900 false"

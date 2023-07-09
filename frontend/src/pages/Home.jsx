@@ -52,6 +52,7 @@ function Home() {
             <img
               src="/photos/pieuvre.png"
               className="max-w-xl m-auto scale-150 flex"
+              alt="pieuvre"
             />
           </div>
         </div>

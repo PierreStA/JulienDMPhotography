@@ -25,10 +25,10 @@ function Faqlist() {
   ];
   return (
     <div className="flex-1 mt-12 md:mt-0">
-      <ul className="space-y-4 divide-y divide-gray-700">
+      <ul className="space-y-4 divide-y bg-gray-800">
         {faqsList.map((item, id) => (
           <li className="py-5" key={id}>
-            <summary className="flex items-center justify-between font-semibold text-gray-200">
+            <summary className="flex items-center justify-between font-bold text-gray-200">
               {item.q}
             </summary>
             <p

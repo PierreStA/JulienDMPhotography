@@ -6,7 +6,7 @@ function Order() {
     <div>
       <Navbar />
       <div className="bg-white dark:bg-gray-800 h-screen">
-        <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
+        <div className="mx-[10%] pt-8">
           <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-cyan-400">
             Contact Me
           </h2>
@@ -15,7 +15,7 @@ function Order() {
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco
           </p>
-          <form action="#" className="space-y-8">
+          <form action="#" className="space-y-8 flex flex-col">
             <div>
               <label
                 for="email"
@@ -62,7 +62,7 @@ function Order() {
             </div>
             <button
               type="submit"
-              className="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+              className="py-3 px-5 text-sm font-medium text-center text-white rounded-lg hover:text-dark sm:w-fit b-2 bg-cyan-500 mx-auto"
             >
               Send message
             </button>

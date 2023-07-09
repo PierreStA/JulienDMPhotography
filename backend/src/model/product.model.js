@@ -47,11 +47,11 @@ const updateOne = async function (product) {
   }
 };
 
-const deleteOne = async function (productId) {
+const deleteOne = async function (id) {
   try {
     const result = await db.query(
       "DELETE FROM `product` WHERE id = ?",
-      [productId]
+      [id]
     );
     return result;
   } catch (error) {
