@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
 
 import pictureAPI from "../services/pictureApi";
 import { userCurrentContext } from "../context/userContext";
@@ -8,8 +11,7 @@ import Navbar from "../components/Navbar";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setName, setUserEmail, setUserId, name, userEmail } =
-    userCurrentContext();
+  const { setUserRole } = userCurrentContext();
 
   const navigate = useNavigate();
 
@@ -17,37 +19,43 @@ function Login() {
     e.preventDefault();
 
     if (email && password) {
-      pictureAPI
-        .post("/api/login", { email, password })
-        .then((res) => {
-          setName(res.data.name);
-          setUserEmail(res.data.email);
-          setUserId(res.data.userId);
+      pictureAPI.post("/api/login", { email, password }).then((res) => {
+        const role = { roles: JSON.parse(res.data.roles) };
 
-          localStorage.setItem("userName", JSON.stringify(res.data.name)); // set dans le local storage
-          localStorage.setItem("userEmail", JSON.stringify(res.data.email));
-          localStorage.setItem("userId", JSON.stringify(res.data.id));
-          console.log(name);
-          navigate("/");
-        })
-        .catch((err) => console.log(err.response.data));
+        setUserRole(role);
+
+        localStorage.setItem("userRole", JSON.stringify(role));
+        // console.log(res.data.email);
+        console.log(name);
+        // console.log(localStorage.getItem("userRole"));
+        toast.success("Welcome back !");
+        navigate("/");
+      });
+      // .catch(
+      //   (err) => console.log(err.response.data),
+      //   toast.error("Please specify email and password")
+      // );
     } else {
+      toast.error("Please specify email and password");
       alert("Please specify email and password");
     }
   };
-  console.log(userEmail);
+
   return (
-    <div>
+    <>
       <Navbar />
-      <div className="flex flex-row items-center min-h-screen pt-6 sm:justify-center sm:pt-0 bg-gray-800">
+      <div className="flex md:flex-row flex-col-reverse items-center h-screen  justify-center sm:pt-0 bg-gray-800">
         <img
           src="/photos/scaphandre.png"
-          className="hidden md:block max-w-xl mr-20 scale-100 "
+          className=" md:block max-w-xl md:mr-20 scale-100 "
         />
-        <div></div>
-        <div className="w-full px-6 py-4 mt-6 overflow-hidden bg-gray-800 shadow-xl border-solid sm:max-w-md sm:rounded-lg">
-          <form className="bg-gray-800 " onSubmit={handleSubmit}>
-            <div className="bg">
+
+        <div className="w-full px-6 py-4 mt-6 overflow-hidden bg-gray-800 flex flex-col ">
+          <form
+            className="bg-gray-800 shadow-xl border-solid max-w-md rounded-lg flex flex-col items-center justify-center"
+            onSubmit={handleSubmit}
+          >
+            <div className="">
               <label
                 htmlFor="email"
                 className="block text-sm font-medium text-gray-400 undefined"
@@ -86,16 +94,19 @@ function Login() {
               >
                 Connexion
               </button>
-              <div className="flex items-center justify-end mt-4">
-                <a className="text-sm text-gray-600 underline hover:text-gray-900">
+              <div className="flex items-center justify-end ">
+                <Link
+                  to="/signup"
+                  className="text-sm text-gray-600 underline hover:text-gray-900 "
+                >
                   Pas encore inscrit ?
-                </a>
+                </Link>
               </div>
             </div>
           </form>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

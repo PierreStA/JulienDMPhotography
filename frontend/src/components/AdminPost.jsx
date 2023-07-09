@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import pictureApi from "../services/pictureApi";
+import { toast } from "react-toastify";
 
 function AdminPost() {
   const [photo, setPhoto] = useState("");
@@ -16,83 +17,64 @@ function AdminPost() {
           price: parseFloat(price[0]),
           photo,
         })
-        .then(() => {})
+        .then(() => {
+          toast.success("Picture posted");
+        })
         .catch((err) => console.log(err.response.data));
     } else {
-      alert("Please specify a description, a price and a photo");
+      toast.error("An error occured, please try again");
     }
   };
 
   return (
-    <div className="flex flex-wrap mt-10 justify-evenly">
-      <div className="flex flex-col items-center">
-        <div className="w-full h-grow px-6 py-4 mt-6 overflow-hidden bg-dark shadow-xl border-solid sm:max-w-md sm:rounded-lg">
-          <form className="bg-gray-800 " onSubmit={handleSubmit}>
-            <div className="bg">
-              <label
-                htmlFor="text"
-                className="block text-sm font-medium text-gray-400 undefined"
-              >
-                Description
-              </label>
-              <div className="flex flex-col ">
-                <input
-                  onChange={(e) => setDescription(e.target.value)}
-                  type="text"
-                  name="description"
-                  className="block w-2/3 rounded-md"
-                  id="description"
-                  minLength="4"
-                  maxLength="100"
-                  size="80"
-                />
-              </div>
-            </div>
-            <div className="mt-4">
-              <label
-                htmlFor="text"
-                className="block text-sm font-medium text-gray-400 "
-              >
-                Id
-              </label>
-              <div className="flex flex-col items-start">
-                <input
-                  onChange={(e) => setPrice(e.target.value)}
-                  type="text"
-                  name="Id"
-                  className=" block w-2/3 rounded-md"
-                  id="Id"
-                />
-              </div>
-            </div>
-            <div className="mt-4">
-              <label
-                htmlFor="text"
-                className="block text-sm font-medium text-gray-400 "
-              >
-                Photo
-              </label>
-              <div className="flex flex-col items-start">
-                <input
-                  onChange={(e) => setPhoto(e.target.value)}
-                  type="text"
-                  name="photo"
-                  className=" block w-2/3 rounded-md"
-                  id="photo"
-                />
-              </div>
-            </div>
-            <button
-              type="submit"
-              onClick={handleSubmit}
-              className="inline-flex items-center px-4 py-2 mt-4 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded-md active:bg-gray-900 false"
-            >
-              Create
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
+    <form
+      className="bg-gray-800 px-6 py-4 mt-6 shadow-xl border-solid sm:max-w-md sm:rounded-lg mb-10 flex flex-col items-center md:block"
+      onSubmit={handleSubmit}
+    >
+      <label htmlFor="text" className="block text-sm font-medium text-gray-400">
+        Description
+      </label>
+      <input
+        onChange={(e) => setDescription(e.target.value)}
+        type="text"
+        name="description"
+        className="block w-2/3 rounded-md"
+        id="description"
+        minLength="4"
+        maxLength="100"
+        size="80"
+      />
+
+      <label htmlFor="text" className="text-sm font-medium text-gray-400 mt-4">
+        Number
+      </label>
+      <input
+        onChange={(e) => setPrice(e.target.value)}
+        type="text"
+        name="Number"
+        className="block w-2/3 rounded-md"
+        id="Number"
+      />
+
+      <label htmlFor="text" className="text-sm font-medium text-gray-400 mt-4">
+        Photo
+      </label>
+      <input
+        onChange={(e) => setPhoto(e.target.value)}
+        type="text"
+        name="photo"
+        className="block w-2/3 rounded-md"
+        id="photo"
+      />
+
+      <button
+        type="submit"
+        onClick={handleSubmit}
+        className="px-4 py-2 mt-4 text-xs font-semibold tracking-widest text-white uppercase bg-gray-900 border border-transparent rounded-md hover:text-cyan-400"
+      >
+        Create
+      </button>
+    </form>
   );
 }
 

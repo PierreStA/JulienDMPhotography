@@ -7,6 +7,7 @@
     "cli": "npm"
   },
   "scripts": {
+    "start": "npm --prefix ./backend run start",
     "migrate": "cd ./backend && node migrate.js",
     "dev": "cross-env-shell 'concurrently -c green,yellow -t \"HH:mm:ss\" -p \"{name} {time}\" \"$npm_package_config_cli:dev-*\"'",
     "dev-front": "cross-env-shell \"cd ./frontend && $npm_package_config_cli run dev\"",
