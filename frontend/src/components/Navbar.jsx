@@ -1,23 +1,45 @@
 import React from "react";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import pictureAPI from "../services/pictureApi";
+import { userCurrentContext } from "../context/userContext";
+import { toast } from "react-toastify";
 
 export default function NavBar() {
+  const { setUserRole } = userCurrentContext();
   const [navbar, setNavbar] = useState(false);
-
+  const navigate = useNavigate();
+  const handleDisconnection = () => {
+    pictureAPI
+      .get("/api/logout")
+      .then(
+        () => localStorage.setItem("userRole", JSON.stringify("")),
+        setUserRole(""),
+        toast.success("You are disconnected"),
+        navigate("/")
+      )
+      .catch((err) => console.log(err));
+  };
+  // console.log(localStorage.getItem("userRole"));
   return (
     <nav className="w-full bg-dark shadow">
-      <div className="justify-between mr-10   md:items-center md:flex ">
+      <div className="justify-between mr-10   md:items-center md:flex md:my-auto">
         <div>
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
-            <a href="javascript:void(0)">
-              <h2 className="text-2xl font-bold text-white ml-8">
-                JulienDm.Photography
-              </h2>
-            </a>
-            <div className="md:hidden">
+            <NavLink
+              to="/"
+              className="text-2xl font-bold text-white mx-auto md:ml-8"
+            >
+              Julien
+              <strong>
+                Dm
+                <span className="text-cyan-300">.</span>
+              </strong>
+              Photography
+            </NavLink>
+            <div className="md:hidden lg:hidden ">
               <button
-                className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
+                className="p-2  rounded-md outline-none focus:border-gray-400 focus:border"
                 onClick={() => setNavbar(!navbar)}
               >
                 {navbar ? (
@@ -55,48 +77,77 @@ export default function NavBar() {
         </div>
         <div>
           <div
-            className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
-              navbar ? "block" : "hidden"
+            className={` justify-self-center pb-3 mt-4 md:block  ${
+              navbar ? "block  " : "hidden "
             }`}
           >
-            <nav className=" justify-evenly space-y-8 md:flex md:space-x-6 md:space-y-0 text-lg">
-              <div className="text-white hover:text-indigo-200 ">
-                <NavLink to="/">Home</NavLink>
-              </div>
-              <div className="text-white hover:text-indigo-200">
-                <NavLink to="/picturelist">Photos</NavLink>
-              </div>
-              <div className="text-white hover:text-indigo-200">
-                <NavLink to="/price">Pricing</NavLink>
-              </div>
-              <div className="text-white hover:text-indigo-200">
-                <NavLink to="/order">Order</NavLink>
-              </div>
-              <div className="text-white hover:text-indigo-200">
-                <NavLink to="/faq">Faq</NavLink>
-              </div>
-              <div className="text-white hover:text-indigo-200">
-                <NavLink to="/admin">Admin</NavLink>
-              </div>
+            <nav className=" space-y-8 flex flex-col items-center justify-center md:flex-row md:space-x-6 md:space-y-0 text-lg">
+              <NavLink
+                to="/"
+                className="text-white hover:text-indigo-200  w-full text-center "
+              >
+                Home
+              </NavLink>
+              <NavLink
+                to="/picturelist"
+                className="text-white hover:text-indigo-200 w-full text-center"
+              >
+                Pictures
+              </NavLink>
+              <NavLink
+                to="/price"
+                className="text-white hover:text-indigo-200 w-full text-center"
+              >
+                Pricing
+              </NavLink>
+              <NavLink
+                to="/order"
+                className="text-white hover:text-indigo-200 w-full text-center"
+              >
+                Order
+              </NavLink>
+              <NavLink
+                to="/faq"
+                className="text-white hover:text-indigo-200 w-full text-center"
+              >
+                Faq
+              </NavLink>
+              <NavLink
+                to="/admin"
+                className="text-white hover:text-indigo-200 w-full text-center"
+              >
+                Admin
+              </NavLink>
             </nav>
-
-            <div className="mt-3 space-y-2 lg:hidden md:inline-block">
-              <div className="inline-block w-full px-4 py-2 text-center text-white bg-gray-600 rounded-md shadow hover:bg-gray-800">
+            <div className="mt-3 space-y-2 flex flex-col items-center justify-center md:hidden">
+              <div className=" w-[80%] px-4 py-2 text-center text-white bg-gray-600 rounded-md shadow hover:bg-gray-800">
                 <NavLink to="/login">Sign in</NavLink>
               </div>
-              <div className="inline-block w-full px-4 py-2 text-center text-gray-800 bg-white rounded-md shadow hover:bg-gray-100">
+              <div className="px-4 py-2 w-[80%] text-center text-gray-800 bg-gray-400 rounded-md shadow hover:bg-gray-500">
                 <NavLink to="/signup">Sign up</NavLink>
+              </div>
+              <div
+                onClick={handleDisconnection}
+                className="w-[80%] px-4 py-2 text-center text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
+              >
+                Logout
               </div>
             </div>
           </div>
         </div>
-        <div className="hidden space-x-2 md:inline-block">
-          <a className="px-4 py-2 text-white bg-gray-600 rounded-md shadow hover:bg-gray-800">
+        <div className="hidden mt-3 space-x-2 md:flex lg:flex justify-evenly ">
+          <div className="md:px-4 py-2 mx-auto text-white bg-gray-600 rounded-md shadow hover:bg-gray-800">
             <NavLink to="/login">Sign in</NavLink>
-          </a>
-          <a className="px-4 py-2 text-gray-800 bg-white rounded-md shadow hover:bg-gray-100">
+          </div>
+          <div className="px-4 py-2 text-gray-800 bg-gray-400 rounded-md shadow hover:bg-gray-500">
             <NavLink to="/signup">Sign up</NavLink>
-          </a>
+          </div>
+          <div
+            onClick={handleDisconnection}
+            className="px-4 py-2 text-gray-800 bg-white rounded-md shadow hover:bg-gray-200"
+          >
+            Logout
+          </div>
         </div>
       </div>
     </nav>

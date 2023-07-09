@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 function Price() {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate("/");
+    navigate("/order");
   };
   return (
     <div>

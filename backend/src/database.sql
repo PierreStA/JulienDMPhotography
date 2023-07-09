@@ -1,97 +1,139 @@
-
 -- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
+--
+-- Host: localhost    Database: julienphotography_db
+-- ------------------------------------------------------
+-- Server version	8.0.31
 
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- -----------------------------------------------------
--- Schema mydb
--- -----------------------------------------------------
--- -----------------------------------------------------
--- Schema julienphotography_db
--- -----------------------------------------------------
+--
+-- Table structure for table `cart`
+--
 
--- -----------------------------------------------------
--- Schema julienphotography_db
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `julienphotography_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
-USE `julienphotography_db` ;
-
--- -----------------------------------------------------
--- Table `julienphotography_db`.`user`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `julienphotography_db`.`user` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(100) NOT NULL,
-  `email` VARCHAR(100) NOT NULL,
-  `password` VARCHAR(255) NOT NULL,
+DROP TABLE IF EXISTS `cart`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cart` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `user_un` (`email` ASC) VISIBLE)
-ENGINE = InnoDB
-AUTO_INCREMENT = 2
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+  KEY `cart_FK` (`user_id`),
+  CONSTRAINT `cart_FK` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `cart`
+--
 
--- -----------------------------------------------------
--- Table `julienphotography_db`.`cart`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `julienphotography_db`.`cart` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `user_id` INT NOT NULL,
+LOCK TABLES `cart` WRITE;
+/*!40000 ALTER TABLE `cart` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cart` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cart_product`
+--
+
+DROP TABLE IF EXISTS `cart_product`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cart_product` (
+  `cart_id` int NOT NULL,
+  `product_id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `quantity` int DEFAULT '1',
   PRIMARY KEY (`id`),
-  INDEX `cart_FK` (`user_id` ASC) VISIBLE,
-  CONSTRAINT `cart_FK`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `julienphotography_db`.`user` (`id`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 2
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+  KEY `fk_cart_has_product_product1_idx` (`product_id`),
+  KEY `fk_cart_has_product_cart1_idx` (`cart_id`),
+  CONSTRAINT `fk_cart_has_product_cart1` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`id`),
+  CONSTRAINT `fk_cart_has_product_product1` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `cart_product`
+--
 
--- -----------------------------------------------------
--- Table `julienphotography_db`.`product`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `julienphotography_db`.`product` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `description` VARCHAR(255) NOT NULL,
-  `price` DOUBLE NOT NULL,
-  `photo` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 2
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+LOCK TABLES `cart_product` WRITE;
+/*!40000 ALTER TABLE `cart_product` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cart_product` ENABLE KEYS */;
+UNLOCK TABLES;
 
+--
+-- Table structure for table `product`
+--
 
--- -----------------------------------------------------
--- Table `julienphotography_db`.`cart_product`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `julienphotography_db`.`cart_product` (
-  `cart_id` INT NOT NULL,
-  `product_id` INT NOT NULL,
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `quantity` INT NULL DEFAULT 1,
-  INDEX `fk_cart_has_product_product1_idx` (`product_id` ASC) VISIBLE,
-  INDEX `fk_cart_has_product_cart1_idx` (`cart_id` ASC) VISIBLE,
+DROP TABLE IF EXISTS `product`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `product` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `description` varchar(255) NOT NULL,
+  `price` double NOT NULL,
+  `photo` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `product`
+--
+
+LOCK TABLES `product` WRITE;
+/*!40000 ALTER TABLE `product` DISABLE KEYS */;
+/*!40000 ALTER TABLE `product` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `roles` varchar(255) DEFAULT '["user"]' NOT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `fk_cart_has_product_cart1`
-    FOREIGN KEY (`cart_id`)
-    REFERENCES `julienphotography_db`.`cart` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_cart_has_product_product1`
-    FOREIGN KEY (`product_id`)
-    REFERENCES `julienphotography_db`.`product` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+  UNIQUE KEY `user_un` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+-- ALTER TABLE julienphotography_db.`user` ADD roles varchar(255) DEFAULT '["user"]' NOT NULL;
 
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'julienphotography_db'
+--
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-04-13 11:00:24

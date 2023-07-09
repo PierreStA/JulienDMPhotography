@@ -1,17 +1,19 @@
-import React from "react";
-
-function PictureCard({ photo, description, price }) {
+function PictureCard({ photo, description, number, onClick }) {
   return (
     <div>
-      <div className=" ml-5 mr-5 mt-10 max-w-xl rounded overflow-hidden shadow-lg bg-dark-blue   ">
-        <div>
-          <img src={`/photos/${photo}`} />
+      <div className="flex flex-col mx-3 mt-10 max-w-xl rounded-xl shadow-lg bg-dark-blue border-black border-2">
+        <div className="font-bold text-l mb-2 mt-5 flex justify-center text-white">
+          {number}
         </div>
-        <div className="text-white text-base  m-5">{description}</div>
-        <div className="font-bold text-l mb-2 mt-5">Numéro : {price}</div>
+        <img
+          src={`/photos/${photo}`}
+          alt={description}
+          className="cursor-pointer"
+          onClick={onClick}
+        />
+        <div className="text-white text-base m-5">{description}</div>
       </div>
     </div>
   );
 }
-
 export default PictureCard;
