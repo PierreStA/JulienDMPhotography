@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 
-function Order() {
+function Contact() {
   return (
     <div>
       <Navbar />
@@ -73,4 +73,4 @@ function Order() {
   );
 }
 
-export default Order;
+export default Contact;

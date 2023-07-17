@@ -7,7 +7,7 @@ function AdminDeleteUpdate() {
   const [photo, setPhoto] = useState("");
   const [productData, setProductData] = useState([]);
   const [description, setDescription] = useState("");
-  const [price, setPrice] = useState([]);
+  // const [price, setPrice] = useState([]);
   const [idProduct, setIdProduct] = useState("");
 
   useEffect(() => {
@@ -20,11 +20,11 @@ function AdminDeleteUpdate() {
 
   const handleUpdate = (e) => {
     e.preventDefault();
-    if (description && price && photo) {
+    if (description && photo) {
       pictureApi
         .put(`api/product/${idProduct}`, {
           description,
-          price: parseFloat(price[0]),
+          // price: parseFloat(price[0]),
           photo,
         })
         .then(() => {
@@ -74,7 +74,7 @@ function AdminDeleteUpdate() {
         maxLength="100"
         size="80"
       />
-      <label htmlFor="text" className="text-sm font-medium text-gray-400 mt-4">
+      {/* <label htmlFor="text" className="text-sm font-medium text-gray-400 mt-4">
         Number
       </label>
       <input
@@ -82,7 +82,7 @@ function AdminDeleteUpdate() {
         type="text"
         name="Number"
         className=" block w-2/3 rounded-md  "
-      />
+      /> */}
 
       <label htmlFor="text" className="text-sm font-medium text-gray-400 mt-4">
         Name
