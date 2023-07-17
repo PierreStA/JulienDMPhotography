@@ -25,10 +25,10 @@ const addOne = async (product) => {
     try{
 
         const{ description, price, photo } = product
-        const [result] = await db.query("insert into `product` (description, price, photo) values (?,?,?)", [product.description, product.price, product.photo]
+        const [result] = await db.query("insert into `product` (description, photo) values (?,?)", [product.description, product.photo]
         );
 
-    return { id: result.insertId,description, price, photo  };  /*id: result.insertId clé SQL2 qui renvoie l'id de lutilisateur crée */
+    return { id: result.insertId,description, photo  };  /*id: result.insertId clé SQL2 qui renvoie l'id de lutilisateur crée */
     } catch (error) {
         throw new Error(`Impossible de créer le produit: ${error}`);
     }
@@ -38,8 +38,8 @@ const addOne = async (product) => {
 const updateOne = async function (product) {
   try {
     const result = await db.query(
-       "UPDATE `product` SET description = ?, price = ?, photo = ? WHERE id = ?",
-      [product.description, product.price, product.photo, product.id]
+       "UPDATE `product` SET description = ?, photo = ? WHERE id = ?",
+      [product.description, product.photo, product.id]
     );
     return result;
   } catch (error) {

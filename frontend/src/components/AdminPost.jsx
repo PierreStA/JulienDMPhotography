@@ -1,20 +1,19 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import pictureApi from "../services/pictureApi";
 import { toast } from "react-toastify";
 
 function AdminPost() {
   const [photo, setPhoto] = useState("");
   const [description, setDescription] = useState("");
-  const [price, setPrice] = useState([]);
+  // const [price, setPrice] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (description && price && photo) {
+    if (description && photo) {
       pictureApi
         .post("api/product", {
           description,
-          price: parseFloat(price[0]),
           photo,
         })
         .then(() => {
@@ -44,7 +43,7 @@ function AdminPost() {
         maxLength="100"
         size="80"
       />
-
+      {/* 
       <label htmlFor="text" className="text-sm font-medium text-gray-400 mt-4">
         Number
       </label>
@@ -54,7 +53,7 @@ function AdminPost() {
         name="Number"
         className="block w-2/3 rounded-md"
         id="Number"
-      />
+      /> */}
 
       <label htmlFor="text" className="text-sm font-medium text-gray-400 mt-4">
         Photo

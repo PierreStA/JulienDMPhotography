@@ -1,15 +1,15 @@
 import React from "react";
-import Navbar from "../components/Navbar";
-import { useNavigate } from "react-router-dom";
+// import Navbar from "../components/Navbar";
+// import { useNavigate } from "react-router-dom";
 
 function Price() {
-  const navigate = useNavigate();
-  const handleClick = () => {
-    navigate("/order");
-  };
+  // const navigate = useNavigate();
+  // const handleClick = () => {
+  //   navigate("/order");
+  // };
   return (
     <div>
-      <Navbar />
+      {/* <Navbar />
       <div className="min-h-screen  bg-gray-800 flex flex-wrap items-center  justify-center  ">
         <div className="flex flex-col sm:flex-col lg:flex-row xl:flex-row md:flex-row justify-center items center  container   ">
           <img
@@ -83,7 +83,7 @@ function Price() {
             </button>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

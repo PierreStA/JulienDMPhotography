@@ -1,27 +1,27 @@
 import React from "react";
 
 function price() {
-  const plans = [
-    {
-      name: " 1 Picture",
-      price: 12,
-      Quality: ["Curabitur faucibus", "massa ut pretium maximus"],
-    },
-    {
-      name: "From 3 to 6 picture",
-      price: 10,
-      features: ["Pellentesque eu nibh et neque", "Suspendisse a leo"],
-    },
-    {
-      name: "More than 6",
-      price: 8,
-      features: ["Praesent quis venenatis ipsum", "Duis non diam vel tortor"],
-    },
-  ];
+  // const plans = [
+  //   {
+  //     name: " 1 Picture",
+  //     price: 12,
+  //     Quality: ["Curabitur faucibus", "massa ut pretium maximus"],
+  //   },
+  //   {
+  //     name: "From 3 to 6 picture",
+  //     price: 10,
+  //     features: ["Pellentesque eu nibh et neque", "Suspendisse a leo"],
+  //   },
+  //   {
+  //     name: "More than 6",
+  //     price: 8,
+  //     features: ["Praesent quis venenatis ipsum", "Duis non diam vel tortor"],
+  //   },
+  // ];
 
   return (
     <section className="py-14">
-      <div className="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8">
+      {/* <div className="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8">
         <div className="relative max-w-xl mx-auto sm:text-center">
           <h3 className="text-gray-800 text-3xl font-semibold sm:text-4xl">
             Pricing for all sizes
@@ -73,7 +73,7 @@ function price() {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
     </section>
   );
 }
