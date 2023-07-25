@@ -94,14 +94,8 @@ export default function NavBar() {
               >
                 Pictures
               </NavLink>
-              {/* <NavLink
-                to="/price"
-                className="text-white hover:text-indigo-200 w-full text-center"
-              >
-                Pricing
-              </NavLink> */}
               <NavLink
-                to="/order"
+                to="/contact"
                 className="text-white hover:text-indigo-200 w-full text-center"
               >
                 Contact

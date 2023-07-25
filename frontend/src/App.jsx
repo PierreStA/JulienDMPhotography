@@ -9,7 +9,7 @@ import PicturesList from "./pages/PicturesList";
 import SignUp from "./pages/SignUp";
 // import Price from "./pages/Price";
 import Faq from "./pages/Faq";
-import Order from "./pages/Order";
+import Contact from "./pages/Contact";
 import Admin from "./pages/Admin";
 
 function App() {
@@ -23,7 +23,6 @@ function App() {
         <Route path="/picturelist" element={<PicturesList />} />
         <Route path="/faq" element={<Faq />} />
         {/* <Route path="/price" element={<Price />} /> */}
-        <Route path="/order" element={<Order />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route
@@ -33,6 +32,7 @@ function App() {
             />
           }
         >
+          <Route path="/contact" element={<Contact />} />
           <Route path="/admin" element={<Admin />} />
         </Route>
       </Routes>
