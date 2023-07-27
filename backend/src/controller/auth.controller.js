@@ -29,7 +29,9 @@ const login = async (req, res, next) => {
 
     // res.cookie("auth_token", token, { httpOnly: true, secure: false });
 
-    res.cookie("auth_token",token,{ httpOnly: true, secure: false }); // nom du cookie, donnée, param.. ( en prod passer secure a True )
+    res.cookie("auth_token",token,{ httpOnly: true, secure: false }); 
+    // nom du cookie, donnée, param /httpOnly : empeche des manipulation du cookie en JS /Secure:true : le cookie sera renvoyé seulement si la requete est effectué par https.
+    // ( en prod passer secure a True et donner un nom moins explicite au cookie )
     res.status(200).json({username:user.name, roles:user.roles})
   } catch (e) {
     res.sendStatus(500);
@@ -37,7 +39,7 @@ const login = async (req, res, next) => {
 };
 
 const logout = async (req, res) => {
-  res.clearCookie("auth_token").sendStatus(200);
+  res.clearCookie("auth_token").sendStatus(200); // on supprime le cookie ce qui deconnect le user
 };
 
 module.exports = { login, logout};

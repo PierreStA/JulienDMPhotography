@@ -9,8 +9,8 @@ function Home() {
   const handleClickStarted = () => {
     navigate("/picturelist");
   };
-  const handleClickMore = () => {
-    navigate("/");
+  const handleClickAbout = () => {
+    navigate("/faq");
   };
 
   return (
@@ -40,12 +40,12 @@ function Home() {
               >
                 Get started
               </button>
-              <div
-                onClick={handleClickMore}
+              <button
+                onClick={handleClickAbout}
                 className="px-4 py-2 text-cyan-300 uppercase bg-transparent border-2 border-cyan-400 rounded-lg dark:text-white hover:bg-cyan-400 hover:text-white text-md"
               >
-                Read more
-              </div>
+                About Me
+              </button>
             </div>
           </div>
           <div className=" flex flex-col  sm:block sm:w-1/3 lg:w-3/5 ">

@@ -32,7 +32,7 @@ function AdminDeleteUpdate() {
         })
         .catch((err) => console.log(err.response.data));
     } else {
-      alert("Please specify a description, a price and a photo");
+      alert("Please specify a description and a photo");
     }
   };
 

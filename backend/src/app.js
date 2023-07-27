@@ -8,10 +8,10 @@ const router=require("./router");
 
 const app = express();
 
-app.use(cors({origin:"http://localhost:3000",credentials:true}));
-app.use(express.static(path.join(__dirname, "../public")));
-app.use(express.json());
-app.use(cookieParser());
+app.use(cors({origin:"http://localhost:3000",credentials:true})); 
+app.use(express.static(path.join(__dirname, "../public"))); // pour servir les fichiers statiques
+app.use(express.json()); // pour parser le body des requetes en json
+app.use(cookieParser());// pour lire les cookies
 
 app.use("/api", router); // explication dans la video JWT1 a 29 min/*
 

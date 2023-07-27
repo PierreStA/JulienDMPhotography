@@ -81,38 +81,39 @@ export default function NavBar() {
               navbar ? "block  " : "hidden "
             }`}
           >
-            <nav className=" space-y-8 flex flex-col items-center justify-center md:flex-row md:space-x-6 md:space-y-0 text-lg">
+            <nav className="space-y-8 flex flex-col items-center justify-center md:flex-row md:space-x-12 md:space-y-0 text-lg flex-wrap">
               <NavLink
                 to="/"
-                className="text-white hover:text-indigo-200  w-full text-center "
+                className="text-white hover:text-indigo-200 text-center whitespace-nowrap"
               >
                 Home
               </NavLink>
               <NavLink
                 to="/picturelist"
-                className="text-white hover:text-indigo-200 w-full text-center"
+                className="text-white hover:text-indigo-200 text-center whitespace-nowrap"
               >
                 Pictures
               </NavLink>
               <NavLink
+                to="/faq"
+                className="text-white hover:text-indigo-200 text-center whitespace-nowrap"
+              >
+                About me
+              </NavLink>
+              <NavLink
                 to="/contact"
-                className="text-white hover:text-indigo-200 w-full text-center"
+                className="text-white hover:text-indigo-200 text-center whitespace-nowrap"
               >
                 Contact
               </NavLink>
               <NavLink
-                to="/faq"
-                className="text-white hover:text-indigo-200 w-full text-center"
-              >
-                Faq
-              </NavLink>
-              <NavLink
                 to="/admin"
-                className="text-white hover:text-indigo-200 w-full text-center"
+                className="text-white hover:text-indigo-200 text-center whitespace-nowrap"
               >
                 Admin
               </NavLink>
             </nav>
+
             <div className="mt-3 space-y-2 flex flex-col items-center justify-center md:hidden">
               <div className=" w-[80%] px-4 py-2 text-center text-white bg-gray-600 rounded-md shadow hover:bg-gray-800">
                 <NavLink to="/login">Sign in</NavLink>

@@ -9,7 +9,8 @@ function PictureCard({ photo, description, number, onClick }) {
         <img
           src={`/photos/${photo}`}
           alt={photo}
-          className="cursor-pointer" /* Affiche le curseur pointer au survol de la photo*/
+          className="cursor-pointer"
+          onClick={onClick}
         />
         <div className="text-white text-base m-5">{description}</div>
       </div>
