@@ -95,7 +95,7 @@ export default function NavBar() {
                 Pictures
               </NavLink>
               <NavLink
-                to="/faq"
+                to="/about-me"
                 className="text-white hover:text-indigo-200 text-center whitespace-nowrap"
               >
                 About me

@@ -2,7 +2,7 @@ const db =require("./db.js");
 
 const findAll= async ()=> {
     try{
-        const [products] = await db.query("select * from `product`");
+        const [products] = await db.query("select * from `product`"); 
 
         return products;
     }catch(e){

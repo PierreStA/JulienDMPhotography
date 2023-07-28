@@ -1,10 +1,10 @@
 import NavBar from "../components/Navbar";
-import Faqlist from "../components/Faqlist.jsx";
-function Faq() {
+import Aboutlist from "../components/About.jsx";
+function AboutMe() {
   return (
     <>
       <NavBar />
-      <section className=" bg-gray-800 md:h-full">
+      <section className=" bg-gray-800 md:h-screen">
         <div className=" pt-20 mx-auto px-4 gap-12 md:flex md:flex-row md:px-8">
           <div className="flex ">
             <div className="">
@@ -12,15 +12,15 @@ function Faq() {
                 All information you need to know
               </p>
               <img
-                src="/photos/pieuvre.png"
-                className=" mt-4  scale-150 flex"
+                src="/photos/julienselfie.png"
+                className=" max-w-[80%] mt-4  mx-auto"
               />
             </div>
           </div>
-          <Faqlist />
+          <Aboutlist />
         </div>
       </section>
     </>
   );
 }
-export default Faq;
+export default AboutMe;

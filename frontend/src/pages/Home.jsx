@@ -18,20 +18,19 @@ function Home() {
       <Navbar />
       {/* <main className="h-full overflow-hidden bg-white dark:bg-gray-800"> */}
       <div className="relative h-full flex items-center overflow-hidden bg-white dark:bg-gray-800">
-        <div className="container relative flex px-6 py-16 mx-auto">
+        <div className="container relative flex px-6  mx-auto">
           <div className="relative z-20 flex flex-col sm:w-2/3 lg:w-2/5">
             <span className="w-[13rem] h-2 mb-12 bg-gray-800 dark:bg-white"></span>
-            <h1 className="flex flex-col text-6xl font-black leading-none text-gray-800 uppercase font-bebas-neue sm:text-8xl dark:text-white">
+            <h1 className="flex flex-col text-6xl font-black mb-4  uppercase  sm:text-8xl text-white">
               Explore the
               <span className="text-5xl sm:text-7xl">Wild</span>
             </h1>
             <p className="text-sm text-gray-700 sm:text-base dark:text-white">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-              nulla magna, porttitor ut volutpat sit amet, gravida at mi. Etiam
-              iaculis arcu orci, at sodales nibh elementum sit amet. Cras
-              venenatis blandit est, ut porttitor augue. Nullam auctor dolor
-              varius tincidunt tristique. Donec sodales lacus in lacus auctor,
-              ut ultricies ante lobortis.
+              Dive into the mesmerizing world of underwater photography and
+              explore the untamed beauty of the deep sea. From vibrant coral
+              reefs to majestic marine creatures, let my lens capture the
+              wonders hidden beneath the waves. Join me on this aquatic
+              adventure <span className="text-cyan-300">...</span>
             </p>
             <div className="flex mt-8">
               <button

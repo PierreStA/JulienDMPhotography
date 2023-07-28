@@ -22,7 +22,7 @@ function PicturesList() {
       <Navbar />
       {selectedPhoto && ( //* si une photo est sélectionnée, affiche la photo en plein écran*//
         <div className="fixed top-0 left-0 right-0 bottom-0 bg-black flex items-center justify-center z-50">
-          <div className="max-w-4xl max-h-screen p-6 overflow-y-auto bg-dark-blue border-2 border-black rounded-xl">
+          <div className="max-w-6xl max-h-screen p-6 overflow-y-auto bg-dark-blue border-2 border-black rounded-xl">
             <img
               src={`/photos/${selectedPhoto}`}
               alt="Selected photo"
@@ -40,8 +40,8 @@ function PicturesList() {
           </div>
         </div>
       )}
-      <div className="flex flex-wrap bg-dark">
-        <div className="flex flex-wrap justify justify-around border-zinc-950">
+      <div className="flex flex-wrap bg-dark ">
+        <div className="flex flex-wrap justify justify-around  border-zinc-950">
           {photos.map(
             (
               product //* pour chaque photo, on affiche un composant PictureCard*//

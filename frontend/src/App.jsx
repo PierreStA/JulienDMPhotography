@@ -8,9 +8,10 @@ import Login from "./pages/Login";
 import PicturesList from "./pages/PicturesList";
 import SignUp from "./pages/SignUp";
 // import Price from "./pages/Price";
-import Faq from "./pages/Faq";
+import Faq from "./pages/AboutMe";
 import Contact from "./pages/Contact";
 import Admin from "./pages/Admin";
+import AboutMe from "./pages/AboutMe";
 
 function App() {
   const { userRole } = userCurrentContext();
@@ -21,7 +22,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/picturelist" element={<PicturesList />} />
-        <Route path="/faq" element={<Faq />} />
+        <Route path="/about-me" element={<AboutMe />} />
         {/* <Route path="/price" element={<Price />} /> */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
