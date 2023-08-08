@@ -28,14 +28,16 @@ function PicturesList() {
               alt="Selected photo"
               className="w-full h-auto"
             />
-            <button //* lorsque l'on clique sur le bouton retour, on remet la variable selectedPhoto à null et on affiche le scrollToTop*//
+            //* lorsque l'on clique sur le bouton retour, on remet la variable
+            selectedPhoto à null et on affiche le scrollToTop*//
+            <button
               onClick={() => {
                 setSelectedPhoto(null);
                 setIsScrollToTopVisible(true);
               }}
-              className="absolute top-4 right-4 text-white"
+              className="absolute top-4 right-4 text-white tracking-wide transition-all duration-200 cursor-pointer shadow-md hover:shadow-lg hover:translate-y-1"
             >
-              Retour
+              Return
             </button>
           </div>
         </div>

@@ -4,16 +4,17 @@ const cookieParser = require ("cookie-parser");
 const path = require("path");
 const cors = require("cors");
 
-const router=require("./router");
+const router=require("./router"); //* on importe le router
 
 const app = express();
 
-app.use(cors({origin:"http://localhost:3000",credentials:true})); 
-app.use(express.static(path.join(__dirname, "../public"))); // pour servir les fichiers statiques
-app.use(express.json()); // pour parser le body des requetes en json
-app.use(cookieParser());// pour lire les cookies
+app.use(cors({origin:"http://localhost:3000",credentials:true})); //* on autorise les requetes venant de l'origine http://localhost:3000 et on autorise les cookies
+app.use(express.static(path.join(__dirname, "../public"))); //* pour servir les fichiers statiques
+app.use(express.json()); //* pour parser le body des requetes en json
+app.use(cookieParser());//* pour lire les cookies
 
-app.use("/api", router); // explication dans la video JWT1 a 29 min/*
+app.use("/api", router); //* on utilise le router pour toutes les routes commencant par /api
+
 
 app.get("*", (req, res) => {
   res.status(404).json({ message: "Not Found!" });

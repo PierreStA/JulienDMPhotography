@@ -11,30 +11,26 @@ import Navbar from "../components/Navbar";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setUserRole } = userCurrentContext();
+  const { setUserRole } = userCurrentContext(); //take the setUserRole from the context
 
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); //prevent the page from reloading when submitting the form
 
     if (email && password) {
       pictureAPI.post("/api/login", { email, password }).then((res) => {
-        const role = { roles: JSON.parse(res.data.roles) };
+        const role = { roles: JSON.parse(res.data.roles) }; //parse the roles from the backend
 
         setUserRole(role);
 
-        localStorage.setItem("userRole", JSON.stringify(role));
+        localStorage.setItem("userRole", JSON.stringify(role)); //store the roles in the local storage of the browser
         // console.log(res.data.email);
         console.log(name);
         // console.log(localStorage.getItem("userRole"));
         toast.success("Welcome back !");
         navigate("/");
       });
-      // .catch(
-      //   (err) => console.log(err.response.data),
-      //   toast.error("Please specify email and password")
-      // );
     } else {
       toast.error("Please specify email and password");
       alert("Please specify email and password");
@@ -53,7 +49,7 @@ function Login() {
         <div className="w-full px-6 py-4 mt-6 overflow-hidden bg-gray-800 flex flex-col ">
           <form
             className="bg-gray-800 shadow-xl border-solid max-w-md rounded-lg flex flex-col items-center justify-center"
-            onSubmit={handleSubmit}
+            onSubmit={handleSubmit} //when submitting the form, call the handleSubmit function
           >
             <div className="">
               <label
@@ -64,7 +60,7 @@ function Login() {
               </label>
               <div className="flex flex-col items-start">
                 <input
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => setEmail(e.target.value)} //take the value of the input and set it to the state
                   type="email"
                   name="email"
                   className="block w-2/3 rounded-md"

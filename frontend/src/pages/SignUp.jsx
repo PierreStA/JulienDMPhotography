@@ -11,16 +11,17 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const { userRole } = userCurrentContext();
+  const { userRole } = userCurrentContext(); //take the setUserRole from the context
 
   const navigate = useNavigate();
 
   const handleForm = (e) => {
-    e.preventDefault();
+    e.preventDefault(); //prevent the page from reloading when submitting the form
 
     if ((email, password, name)) {
+      //check if the email and password are not empty
       pictureAPI
-        .post("/api/user", { email, password, name })
+        .post("/api/user", { email, password, name }) //send the email and password to the backend
         .then(() => navigate("/login"))
         .catch((err) => console.error(err));
     } else {
@@ -39,6 +40,7 @@ function SignUp() {
         <p className="text-cyan-800">JY Cousteau</p>
         <div className="w-full px-6 py-4 mt-6 overflow-hidden  shadow-md sm:max-w-md sm:rounded-lg">
           <form onSubmit={handleForm}>
+            {" "}
             <div>
               <label
                 htmlFor="name"
@@ -48,7 +50,7 @@ function SignUp() {
               </label>
               <div className="flex flex-col items-start">
                 <input
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={(e) => setName(e.target.value)} //take the value of the input and set it to the state
                   type="text"
                   name="name"
                   className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-black"

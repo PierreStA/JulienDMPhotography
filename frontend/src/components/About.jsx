@@ -1,5 +1,10 @@
 import React from "react";
 
+function parseHTMLToJSX(htmlString) {
+  const doc = new DOMParser().parseFromString(htmlString, "text/html");
+  return Array.from(doc.body.childNodes);
+}
+
 function About() {
   const [activeQuestion, setActiveQuestion] = React.useState(null);
   const aboutList = [
@@ -30,22 +35,21 @@ function About() {
   ];
 
   return (
-    <div className="flex-1 mt-12 md:mt-0 ">
+    <div className="flex-1 mt-12 md:mt-0">
       <ul className="">
         {aboutList.map((item, id) => (
           <li key={id} className="border-none">
             <button
-              onClick={() =>
-                setActiveQuestion(id === activeQuestion ? null : id)
+              onClick={
+                () => setActiveQuestion(id === activeQuestion ? null : id) //Si les deux ID sont égaux, cela signifie que la question est déjà active, et donc, setActiveQuestion(null) est appelé pour désactiver la question. Sinon, si les ID sont différents, cela signifie que la question n'est pas active, et donc, setActiveQuestion(id) est appelé pour activer la question
               }
-              className="flex items-start justify-between w-full px-4 py-2 font-bold text-gray-400  rounded-lg focus:outline-none bg-gray-800  mt-12"
+              className="flex items-start justify-between w-full px-4 py-2 font-bold text-gray-400 rounded-lg focus:outline-none bg-gray-800 mt-12"
             >
               <span
                 className={`text-left text-xl ${
                   activeQuestion === id ? "text-cyan-400" : ""
                 }`}
               >
-                {" "}
                 {item.q}
               </span>
               <span className="text-cyan-400">
@@ -53,12 +57,9 @@ function About() {
               </span>
             </button>
             {activeQuestion === id && (
-              <div className="p-4 bg-gray-800   rounded-lg">
-                <p
-                  dangerouslySetInnerHTML={{ __html: item.a }}
-                  className="text-white leading-relaxed"
-                />
-              </div>
+              <p className="text-white leading-relaxed p-4 bg-gray-800 rounded-lg">
+                {item.a}
+              </p>
             )}
           </li>
         ))}

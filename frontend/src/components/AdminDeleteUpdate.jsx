@@ -7,7 +7,6 @@ function AdminDeleteUpdate() {
   const [photo, setPhoto] = useState("");
   const [productData, setProductData] = useState([]);
   const [description, setDescription] = useState("");
-  // const [price, setPrice] = useState([]);
   const [idProduct, setIdProduct] = useState("");
 
   useEffect(() => {
@@ -16,15 +15,15 @@ function AdminDeleteUpdate() {
       .get("api/product")
       .then((res) => setProductData(res.data))
       .catch((err) => console.error(err));
-  }, []);
+  }, []); //*empty array to avoid infinite loop
 
   const handleUpdate = (e) => {
+    //* update picture
     e.preventDefault();
     if (description && photo) {
       pictureApi
         .put(`api/product/${idProduct}`, {
-          description,
-          // price: parseFloat(price[0]),
+          description, //* update description and photo of picture with idProduct
           photo,
         })
         .then(() => {
@@ -39,7 +38,7 @@ function AdminDeleteUpdate() {
   const HandleDeleteProduct = (e) => {
     e.preventDefault();
     pictureApi
-      .delete(`api/product/${idProduct}`)
+      .delete(`api/product/${idProduct}`) //* delete picture with idProduct
       .then(() => {
         toast.success("Picture deleted");
       })
@@ -50,13 +49,13 @@ function AdminDeleteUpdate() {
   };
 
   function handleSetProduct(e) {
-    setIdProduct(e.target.value);
+    setIdProduct(e.target.value); //* set idProduct to the value of the selected picture
   }
 
   return (
     <form
       className="bg-gray-800 px-6 py-4 mt-6 shadow-xl border-solid sm:max-w-md sm:rounded-lg mb-10 flex flex-col items-center md:block"
-      onSubmit={handleUpdate}
+      onSubmit={handleUpdate} //*when submitting the form, call the handleSubmit function
     >
       <label
         htmlFor="text"
@@ -70,20 +69,10 @@ function AdminDeleteUpdate() {
         name="description"
         className="block w-2/3 rounded-md"
         id="description"
-        minLength="4"
+        minLength="4" //* set min and max length of description
         maxLength="100"
         size="80"
       />
-      {/* <label htmlFor="text" className="text-sm font-medium text-gray-400 mt-4">
-        Number
-      </label>
-      <input
-        onChange={(e) => setPrice(e.target.value)}
-        type="text"
-        name="Number"
-        className=" block w-2/3 rounded-md  "
-      /> */}
-
       <label htmlFor="text" className="text-sm font-medium text-gray-400 mt-4">
         Name
       </label>
