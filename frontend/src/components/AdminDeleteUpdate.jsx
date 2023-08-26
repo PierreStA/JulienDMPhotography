@@ -7,11 +7,10 @@ function AdminDeleteUpdate() {
   const [photo, setPhoto] = useState("");
   const [productData, setProductData] = useState([]);
   const [description, setDescription] = useState("");
-  // const [price, setPrice] = useState([]);
   const [idProduct, setIdProduct] = useState("");
 
   useEffect(() => {
-    //* get all pictures from database / use fordropdown menu
+    //* prend toutes les pictures de la bdd et les set dans productData pour les afficher dans le select
     pictureApi
       .get("api/product")
       .then((res) => setProductData(res.data))
@@ -19,12 +18,12 @@ function AdminDeleteUpdate() {
   }, []);
 
   const handleUpdate = (e) => {
+    //* update la description  de la picture via son id
     e.preventDefault();
     if (description && photo) {
       pictureApi
         .put(`api/product/${idProduct}`, {
           description,
-          // price: parseFloat(price[0]),
           photo,
         })
         .then(() => {
@@ -32,11 +31,12 @@ function AdminDeleteUpdate() {
         })
         .catch((err) => console.log(err.response.data));
     } else {
-      alert("Please specify a description, a price and a photo");
+      alert("Please specify a description and a photo");
     }
   };
 
   const HandleDeleteProduct = (e) => {
+    //* supprime la picture avec l'id idProduct
     e.preventDefault();
     pictureApi
       .delete(`api/product/${idProduct}`)
@@ -48,15 +48,15 @@ function AdminDeleteUpdate() {
         toast.error("An error occured, please try again")
       );
   };
-
+  console.log(idProduct);
   function handleSetProduct(e) {
-    setIdProduct(e.target.value);
+    setIdProduct(e.target.value); //* set l'id de la picture selectionnée dans le select
   }
 
   return (
     <form
       className="bg-gray-800 px-6 py-4 mt-6 shadow-xl border-solid sm:max-w-md sm:rounded-lg mb-10 flex flex-col items-center md:block"
-      onSubmit={handleUpdate}
+      onSubmit={handleUpdate} //* quand on submit le form, on appelle la fonction handleUpdate
     >
       <label
         htmlFor="text"
@@ -70,20 +70,10 @@ function AdminDeleteUpdate() {
         name="description"
         className="block w-2/3 rounded-md"
         id="description"
-        minLength="4"
+        minLength="4" //* set min and max length of description
         maxLength="100"
         size="80"
       />
-      {/* <label htmlFor="text" className="text-sm font-medium text-gray-400 mt-4">
-        Number
-      </label>
-      <input
-        onChange={(e) => setPrice(e.target.value)}
-        type="text"
-        name="Number"
-        className=" block w-2/3 rounded-md  "
-      /> */}
-
       <label htmlFor="text" className="text-sm font-medium text-gray-400 mt-4">
         Name
       </label>
@@ -101,12 +91,11 @@ function AdminDeleteUpdate() {
         Photo
       </label>
       <select
-        // value={idProduct}
         onChange={handleSetProduct}
         className="pl-2 text-black h-10 rounded-lg bg-gray-200 shadow-lg shadow-blue-500/50 "
       >
-        {productData.map((product) => (
-          <option className="text-black" value={product.id} key={product.photo}>
+        {productData.map((product, index) => (
+          <option className="text-black" value={product.id} key={index}>
             {product.photo}
           </option>
         ))}

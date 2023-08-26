@@ -22,26 +22,28 @@ function PicturesList() {
       <Navbar />
       {selectedPhoto && ( //* si une photo est sélectionnée, affiche la photo en plein écran*//
         <div className="fixed top-0 left-0 right-0 bottom-0 bg-black flex items-center justify-center z-50">
-          <div className="max-w-4xl max-h-screen p-6 overflow-y-auto bg-dark-blue border-2 border-black rounded-xl">
+          <div className="max-w-6xl max-h-screen p-6 overflow-y-auto bg-dark-blue border-2 border-black rounded-xl">
             <img
               src={`/photos/${selectedPhoto}`}
               alt="Selected photo"
               className="w-full h-auto"
             />
-            <button //* lorsque l'on clique sur le bouton retour, on remet la variable selectedPhoto à null et on affiche le scrollToTop*//
+            //* boutton retour ferme la modal et remet le scrollToTop*//
+            <button
               onClick={() => {
                 setSelectedPhoto(null);
                 setIsScrollToTopVisible(true);
               }}
-              className="absolute top-4 right-4 text-white"
+              className="absolute top-4 right-4 text-white tracking-wide transition-all duration-200 cursor-pointer 
+              shadow-md hover:shadow-lg hover:translate-y-1"
             >
-              Retour
+              Return
             </button>
           </div>
         </div>
       )}
-      <div className="flex flex-wrap bg-dark">
-        <div className="flex flex-wrap justify justify-around border-zinc-950">
+      <div className="flex flex-wrap bg-dark ">
+        <div className="flex flex-wrap justify justify-around  border-zinc-950">
           {photos.map(
             (
               product //* pour chaque photo, on affiche un composant PictureCard*//

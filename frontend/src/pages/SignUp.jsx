@@ -1,40 +1,59 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import { userCurrentContext } from "../context/userContext";
 import { Link } from "react-router-dom";
-
+import * as Yup from "yup";
 import pictureAPI from "../services/pictureApi";
 
 function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const { userRole } = userCurrentContext();
 
   const navigate = useNavigate();
 
-  const handleForm = (e) => {
-    e.preventDefault();
+  const schemaValidation = Yup.object().shape({
+    //* utiliser yup pour valider le formulaire
+    name: Yup.string().required("Nom est requis"),
+    email: Yup.string().email("Email non valide").required("Email est requis"),
+    password: Yup.string()
+      .min(8, "Le mot de passe doit contenir au moins 8 caractères")
+      .matches(
+        /[!@#$%^&*(),.?":{}|<>]/,
+        "Le mot de passe doit contenir au moins un caractère spécial"
+      )
+      .required("Mot de passe est requis"),
+  });
 
-    if ((email, password, name)) {
+  const handleForm = async (e) => {
+    e.preventDefault();
+    try {
+      await schemaValidation.validate(
+        //* verifie si le formulaire est valide
+        { name, email, password },
+        { abortEarly: false } //* permet d'afficher tous les messages d'erreurs
+      );
       pictureAPI
         .post("/api/user", { email, password, name })
         .then(() => navigate("/login"))
         .catch((err) => console.error(err));
-    } else {
-      alert("You must provide a name, an email and a password");
+    } catch (validationError) {
+      //* si le formulaire n'est pas valide, affiche une alerte
+      alert("Veuillez remplir tous les champs correctement.");
     }
   };
-  console.log(userRole);
+
   return (
     <div>
       <Navbar />
       <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 bg-gray-800 ">
+        <img
+          src="/photos/scaphandre.png"
+          className=" md:block max-w-xl md:mr-20 scale-100 "
+        />
         <h1 className="text-lg text-cyan-400">
           {" "}
-          « On aime ce qui nous a émerveillés, et on protège ce que l’on aime. »
+          “We love what amazed us, and we protect what we love. »
         </h1>
         <p className="text-cyan-800">JY Cousteau</p>
         <div className="w-full px-6 py-4 mt-6 overflow-hidden  shadow-md sm:max-w-md sm:rounded-lg">
@@ -44,7 +63,7 @@ function SignUp() {
                 htmlFor="name"
                 className="block text-sm font-medium text-gray-400 undefined"
               >
-                Name
+                Nom
               </label>
               <div className="flex flex-col items-start">
                 <input
@@ -67,7 +86,7 @@ function SignUp() {
                   onChange={(e) => setEmail(e.target.value)}
                   type="email"
                   name="email"
-                  className="block w-full mt-1 border-gray-300 rounded-md shadow-sm "
+                  className="block w-full mt-1 border-gray-300 rounded-md shadow-sm"
                 />
               </div>
             </div>
@@ -76,7 +95,7 @@ function SignUp() {
                 htmlFor="password"
                 className="block text-sm font-medium text-gray-400 undefined"
               >
-                Password
+                Mot de passe
               </label>
               <div className="flex flex-col items-start">
                 <input
@@ -93,15 +112,38 @@ function SignUp() {
                 className="text-sm text-gray-600 underline hover:text-gray-900"
                 href="#"
               >
-                Already registered?
+                Déjà inscrit ?
               </Link>
               <button
                 type="submit"
                 className="inline-flex items-center px-4 py-2 ml-4 text-xs font-semibold tracking-widest text-gray-400 uppercase transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded-md active:bg-gray-900 false"
               >
-                Register
+                S'inscrire
               </button>
             </div>
+            <label
+              htmlFor="scales"
+              className=" text-gray-600 text-sm col-span-2 "
+            >
+              <input
+                type="checkbox"
+                id="scales"
+                className=" mr-2 mt-1"
+                required
+              />
+              <span className="max-w-[80%]">
+                By registering on our site, you agree to the collection and
+                processing of your personal data. To find out more, please read
+                our{" "}
+                <a
+                  href="/privacy-policy"
+                  className="text-cyan-400 hover:text-cyan-600 underline"
+                  _target="blank" //* permet d'ouvrir le lien dans un nouvel onglet
+                >
+                  privacy policy
+                </a>
+              </span>
+            </label>
           </form>
         </div>
       </div>

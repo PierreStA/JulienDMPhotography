@@ -1,12 +1,12 @@
 const Joi = require("joi");
 
+//* on verifie que les données envoyé par le user respectent les conditions suivantes
 const validateLogin = (user) => {
   const result = Joi.object({
     email: Joi.string().email().presence("required"),
     password: Joi.string().min(8).max(30).presence("required"),
   })
     .required()
-    //.min(1)
     .validate(user, { abortEarly: false }).error;
 
   if (result) {
@@ -14,7 +14,7 @@ const validateLogin = (user) => {
       message: error.message,
     }));
 
-    return { errorCount: result.details.length, errorMessages };
+    return { errorCount: result.details.length, errorMessages }; //* on renvoie le nombre d'erreurs et les messages d'erreurs
   }
 
   return result;
