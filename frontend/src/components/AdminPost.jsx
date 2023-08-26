@@ -1,28 +1,41 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+import * as yup from "yup";
 import pictureApi from "../services/pictureApi";
 import { toast } from "react-toastify";
 
 function AdminPost() {
   const [photo, setPhoto] = useState("");
   const [description, setDescription] = useState("");
-  // const [price, setPrice] = useState([]);
+
+  const schema = yup.object({
+    //* utiliser yup pour valider le formulaire
+    description: yup
+      .string()
+      .min(4, "Description must be at least 4 characters")
+      .max(500, "Description can't exceed 500 characters")
+      .required("Description is required"),
+    photo: yup.string().required("Photo is required"),
+  });
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    if (description && photo) {
-      pictureApi
-        .post("api/product", {
-          description,
-          photo,
-        })
-        .then(() => {
-          toast.success("Picture posted");
-        })
-        .catch((err) => console.log(err.response.data));
-    } else {
-      toast.error("An error occured, please try again");
-    }
+    e.preventDefault(); //* previent le rechargement de la page lors de la soumission du formulaire
+    schema //* check si le formulaire est valide
+      .validate({ description, photo })
+      .then(() => {
+        pictureApi
+          .post("api/product", {
+            //*utilise la methode post pour envoyer les données du formulaire dans la bdd
+            description,
+            photo,
+          })
+          .then(() => {
+            toast.success("Picture posted");
+          })
+          .catch((err) => console.log(err.response.data));
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
   };
 
   return (
@@ -39,22 +52,8 @@ function AdminPost() {
         name="description"
         className="block w-2/3 rounded-md"
         id="description"
-        minLength="4"
-        maxLength="100"
         size="80"
       />
-      {/* 
-      <label htmlFor="text" className="text-sm font-medium text-gray-400 mt-4">
-        Number
-      </label>
-      <input
-        onChange={(e) => setPrice(e.target.value)}
-        type="text"
-        name="Number"
-        className="block w-2/3 rounded-md"
-        id="Number"
-      /> */}
-
       <label htmlFor="text" className="text-sm font-medium text-gray-400 mt-4">
         Photo
       </label>

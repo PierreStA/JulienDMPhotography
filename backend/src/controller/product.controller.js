@@ -2,7 +2,7 @@ const { findAll, findOne, addOne, updateOne, deleteOne} = require("../model/prod
 
 const getAll = async(req,res, next)=>{
     try{ 
-        const products = await findAll(); //* on recupere tous les produits de la bdd        
+        const products = await findAll(); //* on recupere tous les produits      
         res.send(products);
     } catch(e){
         next(e);

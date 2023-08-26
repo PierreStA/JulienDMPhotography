@@ -91,9 +91,8 @@ function Contact() {
                 required
               />
               <span className="max-w-[80%]">
-                In accordance with the GDPR (General Data Protection
-                Regulation), I accept that my contact details are used for
-                commercial purposes.
+                In accordance with the PDPA (Personal Data Protection Act ), I
+                accept that my contact details are used for commercial purposes.
               </span>
             </label>
             <button

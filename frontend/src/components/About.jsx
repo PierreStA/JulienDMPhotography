@@ -1,10 +1,5 @@
 import React from "react";
 
-function parseHTMLToJSX(htmlString) {
-  const doc = new DOMParser().parseFromString(htmlString, "text/html");
-  return Array.from(doc.body.childNodes);
-}
-
 function About() {
   const [activeQuestion, setActiveQuestion] = React.useState(null);
   const aboutList = [

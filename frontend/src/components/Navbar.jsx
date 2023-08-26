@@ -20,10 +20,9 @@ export default function NavBar() {
       )
       .catch((err) => console.log(err));
   };
-  // console.log(localStorage.getItem("userRole"));
   return (
     <nav className="w-full bg-dark shadow">
-      <div className="justify-between mr-10   md:items-center md:flex md:my-auto">
+      <div className="justify-between md:mr-10 md:items-center md:flex md:my-auto">
         <div>
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
             <NavLink
@@ -77,7 +76,7 @@ export default function NavBar() {
         </div>
         <div>
           <div
-            className={` justify-self-center pb-3 mt-4 md:block  ${
+            className={` justify-self-center pb-3 mt-4 md:block ${
               navbar ? "block  " : "hidden "
             }`}
           >
@@ -114,11 +113,11 @@ export default function NavBar() {
               </NavLink>
             </nav>
 
-            <div className="mt-3 space-y-2 flex flex-col items-center justify-center md:hidden">
-              <div className=" w-[80%] px-4 py-2 text-center text-white bg-gray-600 rounded-md shadow hover:bg-gray-800">
+            <div className="mt-3 flex flex-col items-center   md:hidden">
+              <div className=" w-[80%] px-4 py-2 text-center text-white bg-gray-600 rounded-md shadow hover:bg-gray-800 mb-4">
                 <NavLink to="/login">Sign in</NavLink>
               </div>
-              <div className="px-4 py-2 w-[80%] text-center text-gray-800 bg-gray-400 rounded-md shadow hover:bg-gray-500">
+              <div className="px-4 py-2 w-[80%] text-center text-gray-800 bg-gray-400 rounded-md shadow hover:bg-gray-500 mb-4">
                 <NavLink to="/signup">Sign up</NavLink>
               </div>
               <div

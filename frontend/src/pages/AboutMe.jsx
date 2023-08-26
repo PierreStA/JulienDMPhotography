@@ -3,7 +3,7 @@ import Aboutlist from "../components/About.jsx";
 function AboutMe() {
   return (
     <>
-      <NavBar />
+      {/* <NavBar /> */}
       <section className=" bg-gray-800 md:h-screen">
         <div className=" pt-20 mx-auto px-4 gap-12 md:flex md:flex-row md:px-8">
           <div className="flex ">

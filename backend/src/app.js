@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname, "../public"))); //* pour servir les 
 app.use(express.json()); //* pour parser le body des requetes en json
 app.use(cookieParser());//* pour lire les cookies
 
-app.use("/api", router); //* on utilise le router pour toutes les routes commencant par /api
+app.use("/api", router); 
 
 
 app.get("*", (req, res) => {

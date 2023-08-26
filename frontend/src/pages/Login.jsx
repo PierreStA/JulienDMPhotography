@@ -11,26 +11,27 @@ import Navbar from "../components/Navbar";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setUserRole } = userCurrentContext(); //take the setUserRole from the context
+  const { setUserRole } = userCurrentContext(); //*take the setUserRole from the context
 
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
-    e.preventDefault(); //prevent the page from reloading when submitting the form
+    e.preventDefault(); // Empêche la page de se recharger lors de la soumission du formulaire
 
     if (email && password) {
-      pictureAPI.post("/api/login", { email, password }).then((res) => {
-        const role = { roles: JSON.parse(res.data.roles) }; //parse the roles from the backend
-
-        setUserRole(role);
-
-        localStorage.setItem("userRole", JSON.stringify(role)); //store the roles in the local storage of the browser
-        // console.log(res.data.email);
-        console.log(name);
-        // console.log(localStorage.getItem("userRole"));
-        toast.success("Welcome back !");
-        navigate("/");
-      });
+      pictureAPI
+        .post("/api/login", { email, password })
+        .then((res) => {
+          const role = { roles: JSON.parse(res.data.roles) }; // Analyse des rôles depuis le backend
+          setUserRole(role);
+          localStorage.setItem("userRole", JSON.stringify(role)); // Stockage des rôles dans le stockage local
+          toast.success("Welcome back !");
+          navigate("/");
+        })
+        .catch((error) => {
+          // toast.error("Invalid email or password");
+          alert("Invalid email or password");
+        });
     } else {
       toast.error("Please specify email and password");
       alert("Please specify email and password");

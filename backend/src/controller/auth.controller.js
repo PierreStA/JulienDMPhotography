@@ -8,7 +8,7 @@ const validateLogin = require("../validator/login.validator.js");
 const login = async (req, res, next) => {
   try {
     const errors = validateLogin(req.body); //* on verifie que les données envoyé par le user sont correctes
-    if (errors) throw new ModelValidationError(errors);//* si il y a des erreurs on les renvoie
+    if (errors) return res.status(401).send(errors);//* si il y a des erreurs on les renvoie
     const [user] = await findByEmail(req.body.email);//* on cherche l'utilisateur dans la base de donnée avec le model findByEmail 
     if (!user) return res.status(401).send("Invalid Credentials"); //* si l'utilisateur n'existe pas on renvoie une erreur
     const passwordVerification = await verifyPassword( //* on verifie que le mot de passe est correcte avec le helper argon 

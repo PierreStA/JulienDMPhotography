@@ -10,20 +10,20 @@ function AdminDeleteUpdate() {
   const [idProduct, setIdProduct] = useState("");
 
   useEffect(() => {
-    //* get all pictures from database / use fordropdown menu
+    //* prend toutes les pictures de la bdd et les set dans productData pour les afficher dans le select
     pictureApi
       .get("api/product")
       .then((res) => setProductData(res.data))
       .catch((err) => console.error(err));
-  }, []); //*empty array to avoid infinite loop
+  }, []);
 
   const handleUpdate = (e) => {
-    //* update picture
+    //* update la description  de la picture via son id
     e.preventDefault();
     if (description && photo) {
       pictureApi
         .put(`api/product/${idProduct}`, {
-          description, //* update description and photo of picture with idProduct
+          description,
           photo,
         })
         .then(() => {
@@ -36,9 +36,10 @@ function AdminDeleteUpdate() {
   };
 
   const HandleDeleteProduct = (e) => {
+    //* supprime la picture avec l'id idProduct
     e.preventDefault();
     pictureApi
-      .delete(`api/product/${idProduct}`) //* delete picture with idProduct
+      .delete(`api/product/${idProduct}`)
       .then(() => {
         toast.success("Picture deleted");
       })
@@ -47,15 +48,15 @@ function AdminDeleteUpdate() {
         toast.error("An error occured, please try again")
       );
   };
-
+  console.log(idProduct);
   function handleSetProduct(e) {
-    setIdProduct(e.target.value); //* set idProduct to the value of the selected picture
+    setIdProduct(e.target.value); //* set l'id de la picture selectionnée dans le select
   }
 
   return (
     <form
       className="bg-gray-800 px-6 py-4 mt-6 shadow-xl border-solid sm:max-w-md sm:rounded-lg mb-10 flex flex-col items-center md:block"
-      onSubmit={handleUpdate} //*when submitting the form, call the handleSubmit function
+      onSubmit={handleUpdate} //* quand on submit le form, on appelle la fonction handleUpdate
     >
       <label
         htmlFor="text"
@@ -90,12 +91,11 @@ function AdminDeleteUpdate() {
         Photo
       </label>
       <select
-        // value={idProduct}
         onChange={handleSetProduct}
         className="pl-2 text-black h-10 rounded-lg bg-gray-200 shadow-lg shadow-blue-500/50 "
       >
-        {productData.map((product) => (
-          <option className="text-black" value={product.id} key={product.photo}>
+        {productData.map((product, index) => (
+          <option className="text-black" value={product.id} key={index}>
             {product.photo}
           </option>
         ))}
