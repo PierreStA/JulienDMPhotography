@@ -18,13 +18,13 @@ function AdminPost() {
   });
 
   const handleSubmit = (e) => {
-    e.preventDefault(); //* previent le rechargement de la page lors de la soumission du formulaire
-    schema //* check si le formulaire est valide
+    //* verifie si le formulaire est valide et post la picture
+    e.preventDefault();
+    schema
       .validate({ description, photo })
       .then(() => {
         pictureApi
           .post("api/product", {
-            //*utilise la methode post pour envoyer les données du formulaire dans la bdd
             description,
             photo,
           })
@@ -40,35 +40,37 @@ function AdminPost() {
 
   return (
     <form
-      className="bg-gray-800 px-6 py-4 mt-6 shadow-xl border-solid sm:max-w-md sm:rounded-lg mb-10 flex flex-col items-center md:block"
+      className="bg-gray-800 px-6 py-4 mt-6 shadow-xl border-solid w-full md:w-1/4 rounded-lg mb-10 flex flex-col items-center "
       onSubmit={handleSubmit}
     >
-      <label htmlFor="text" className="block text-sm font-medium text-gray-400">
+      <label
+        htmlFor="description"
+        className="block text-sm font-medium text-gray-400"
+      >
         Description
       </label>
       <input
         onChange={(e) => setDescription(e.target.value)}
         type="text"
         name="description"
-        className="block w-2/3 rounded-md"
+        className=" w-2/3 rounded-md"
         id="description"
-        size="80"
       />
-      <label htmlFor="text" className="text-sm font-medium text-gray-400 mt-4">
+      <label htmlFor="photo" className="text-sm font-medium text-gray-400 mt-4">
         Photo
       </label>
       <input
         onChange={(e) => setPhoto(e.target.value)}
         type="text"
         name="photo"
-        className="block w-2/3 rounded-md"
+        className=" w-2/3 rounded-md"
         id="photo"
       />
 
       <button
         type="submit"
         onClick={handleSubmit}
-        className="px-4 py-2 mt-4 text-xs font-semibold tracking-widest text-white uppercase bg-gray-900 border border-transparent rounded-md hover:text-cyan-400"
+        className="px-4 py-2 mt-4 text-xs font-semibold tracking-widest text-white uppercase bg-gray-900  rounded-md hover:text-cyan-400"
       >
         Create
       </button>

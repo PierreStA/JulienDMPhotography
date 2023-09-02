@@ -10,7 +10,7 @@ function AdminDeleteUpdate() {
   const [idProduct, setIdProduct] = useState("");
 
   useEffect(() => {
-    //* prend toutes les pictures de la bdd et les set dans productData pour les afficher dans le select
+    //* recupere les pictures et set productData
     pictureApi
       .get("api/product")
       .then((res) => setProductData(res.data))
@@ -43,20 +43,17 @@ function AdminDeleteUpdate() {
       .then(() => {
         toast.success("Picture deleted");
       })
-      .catch(
-        (err) => console.log(err.response.data),
-        toast.error("An error occured, please try again")
-      );
+      .catch((err) => console.log(err.response.data));
   };
-  console.log(idProduct);
+
   function handleSetProduct(e) {
     setIdProduct(e.target.value); //* set l'id de la picture selectionnée dans le select
   }
 
   return (
     <form
-      className="bg-gray-800 px-6 py-4 mt-6 shadow-xl border-solid sm:max-w-md sm:rounded-lg mb-10 flex flex-col items-center md:block"
-      onSubmit={handleUpdate} //* quand on submit le form, on appelle la fonction handleUpdate
+      className="bg-gray-800 px-6 py-4 mt-6 shadow-xl border-solid sm:max-w-md sm:rounded-lg mb-10 flex flex-col items-center "
+      onSubmit={handleUpdate}
     >
       <label
         htmlFor="text"
@@ -104,14 +101,14 @@ function AdminDeleteUpdate() {
         <button
           type="submit"
           onClick={handleUpdate}
-          className="px-4 py-2 mt-4 ml-4 text-xs font-semibold tracking-widest text-white uppercase bg-gray-900 border border-transparent rounded-md hover:text-cyan-400"
+          className="px-4 py-2 mt-4 ml-4 text-xs font-semibold tracking-widest text-white uppercase bg-gray-900  rounded-md hover:text-cyan-400"
         >
           Update
         </button>
         <button
           type="submit"
           onClick={HandleDeleteProduct}
-          className="px-4 py-2 mt-4 ml-12 text-xs font-semibold tracking-widest text-white uppercase bg-gray-900 border border-transparent rounded-md hover:text-cyan-400"
+          className="px-4 py-2 mt-4 ml-12 text-xs font-semibold tracking-widest text-white uppercase bg-gray-900 rounded-md hover:text-cyan-400"
         >
           Delete
         </button>

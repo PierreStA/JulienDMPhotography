@@ -1,4 +1,4 @@
-import NavBar from "../components/Navbar";
+// import NavBar from "../components/Navbar";
 import Aboutlist from "../components/About.jsx";
 function AboutMe() {
   return (

@@ -7,8 +7,11 @@ import { toast } from "react-toastify";
 
 export default function NavBar() {
   const { setUserRole } = userCurrentContext();
+  const userRoleObject = JSON.parse(localStorage.getItem("userRole")); //* Récupération de l'objet de rôle
+  const userRoles = userRoleObject.roles || []; //* Récupération des rôles de l'utilisateur connecté ou un tableau vide si pas de rôles (cas d'un utilisateur non connecté)
   const [navbar, setNavbar] = useState(false);
   const navigate = useNavigate();
+
   const handleDisconnection = () => {
     pictureAPI
       .get("/api/logout")
@@ -20,6 +23,7 @@ export default function NavBar() {
       )
       .catch((err) => console.log(err));
   };
+  console.log(userRoles);
   return (
     <nav className="w-full bg-dark shadow">
       <div className="justify-between md:mr-10 md:items-center md:flex md:my-auto">
@@ -36,7 +40,7 @@ export default function NavBar() {
               </strong>
               Photography
             </NavLink>
-            <div className="md:hidden lg:hidden ">
+            <div className="md:hidden  ">
               <button
                 className="p-2  rounded-md outline-none focus:border-gray-400 focus:border"
                 onClick={() => setNavbar(!navbar)}
@@ -105,14 +109,15 @@ export default function NavBar() {
               >
                 Contact
               </NavLink>
-              <NavLink
-                to="/admin"
-                className="text-white hover:text-indigo-200 text-center whitespace-nowrap"
-              >
-                Admin
-              </NavLink>
+              {userRoles.includes("admin") && (
+                <NavLink
+                  to="/admin"
+                  className="text-white hover:text-indigo-200 text-center whitespace-nowrap"
+                >
+                  Admin
+                </NavLink>
+              )}
             </nav>
-
             <div className="mt-3 flex flex-col items-center   md:hidden">
               <div className=" w-[80%] px-4 py-2 text-center text-white bg-gray-600 rounded-md shadow hover:bg-gray-800 mb-4">
                 <NavLink to="/login">Sign in</NavLink>

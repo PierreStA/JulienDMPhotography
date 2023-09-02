@@ -5,7 +5,7 @@ import AdminDeleteUpdate from "../components/AdminDeleteUpdate";
 
 function Admin() {
   return (
-    <div className="bg-dark h-grow w-full h-full ">
+    <div className="bg-dark h-grow  h-full ">
       <Navbar />
       <div className="flex flex-wrap mt-10 justify-evenly">
         <AdminPost />

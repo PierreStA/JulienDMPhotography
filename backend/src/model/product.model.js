@@ -5,7 +5,7 @@ const findAll= async ()=> {
         const [products] = await db.query("select * from `product`"); 
         return products;
     }catch(e){
-        console.log(e);//* si erreur on la log
+        console.log(e);
     }
 };
 
@@ -24,7 +24,7 @@ const addOne = async (product) => {
         const [result] = await db.query("insert into `product` (description, photo) values (?,?)", [product.description, product.photo] 
         );
 
-    return { id: result.insertId,description, photo};  
+    return { id: result.insertId,description, photo};  //*id: result.insertId clé SQL2 qui renvoie l'id du produit crée
     } catch (error) {
         throw new Error(`Impossible de créer le produit: ${error}`);
     }

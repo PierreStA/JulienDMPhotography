@@ -1,18 +1,16 @@
 const { decodeJWT } = require ("../helper/jwt.helper.js");
 
-const authorization = async (req, res, next ) => { //* middleware pour verifier si l'utilisateur est connecté 
+//* middleware qui verifie que l'utilisateur est authaurisé a faire la requete
+const authorization = async (req, res, next ) => { 
     
     try{
-        const token = req.cookies.auth_token; //* on recupere le token dans le cookie auth_token
-
+        const token = req.cookies.auth_token; 
         if (!token) throw new Error();
 
-
-        const data = decodeJWT(token); 
-
+        const data = decodeJWT(token); //* on decode le token avec le helper jwt
         req.userID = data.id;  //* on ajoute l'id de l'utilisateur dans la requete
         req.userName=data.name; //* on ajoute le nom de l'utilisateur dans la requete
-        return next(); //* on passe au middleware suivant
+        return next(); 
     }catch(e) {
         res.sendStatus(401);
     }

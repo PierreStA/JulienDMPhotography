@@ -35,7 +35,7 @@ function Contact() {
                 placeholder="name@bigfish.com"
                 required
               />{" "}
-              <ValidationError //this will show an error message if the field is invalid.
+              <ValidationError //*this will show an error message if the field is invalid.
                 prefix="Email"
                 field="email"
                 errors={state.errors}

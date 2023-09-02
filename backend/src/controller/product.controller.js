@@ -13,8 +13,7 @@ const getOne = async(req,res,next) =>{
     
     try{
         const productId= parseInt(req.params.id); //* on recupere l'id du produit dans l'url et on le convertit en nombre entier
-        if (isNaN(productId)) throw new Error(); //* si l'id n'est pas un nombre on renvoie une erreur 400
-        const [product] = await findOne(productId);//* on recupere le produit 
+        const [product] = await findOne(productId); //* on utilise le model pour recuperer le produit avec l'id recupere
         res.send(product); //* on renvoie le produit
     }catch(e){
         next(e);
@@ -25,10 +24,10 @@ const getOne = async(req,res,next) =>{
 const createOne = async (req, res, next) => {
   try {
     const product = req.body; //* on recupere le produit dans le body de la requete
-    const newProduct = await addOne(product); //* on ajoute le produit a la bdd
-    res.status(201).json(newProduct);//* on renvoie le produit avec le status 201
+    const newProduct = await addOne(product); //* on utilise le model pour creer le produit
+    res.status(201).json(newProduct);//* on renvoie le produit en json avec le code 201
   } catch (error) {
-    next(error);
+    next(error); 
   }
 };
 
@@ -52,7 +51,7 @@ const editOne = async (req, res) => {
     const product = req.body;
     product.id = parseInt(req.params.id, 10);//* on recupere l'id du produit et on le convertit en nombre entier
     const [result] = await updateOne(product);//* on met a jour le produit avec l'id recupere
-    if (result.affectedRows === 0) {
+    if (result.affectedRows === 0) { 
       res.sendStatus(404);
     } else {
       res.sendStatus(204);

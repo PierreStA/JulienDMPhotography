@@ -49,7 +49,7 @@ function SignUp() {
       <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 bg-gray-800 ">
         <img
           src="/photos/scaphandre.png"
-          className=" md:block max-w-xl md:mr-20 scale-100 "
+          className=" md:block max-w-lg  scale-100 "
         />
         <h1 className="text-lg text-cyan-400">
           {" "}
@@ -63,7 +63,7 @@ function SignUp() {
                 htmlFor="name"
                 className="block text-sm font-medium text-gray-400 undefined"
               >
-                Nom
+                Name
               </label>
               <div className="flex flex-col items-start">
                 <input
@@ -95,7 +95,7 @@ function SignUp() {
                 htmlFor="password"
                 className="block text-sm font-medium text-gray-400 undefined"
               >
-                Mot de passe
+                Password
               </label>
               <div className="flex flex-col items-start">
                 <input

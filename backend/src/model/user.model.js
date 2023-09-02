@@ -1,7 +1,6 @@
 const db = require("./db.js");
 
 
-
 const findOne= async (userId)=> {
     try{
         const [user] = await db.query("select * from `user` where id = ? ", [userId]);  
