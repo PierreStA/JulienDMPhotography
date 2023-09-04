@@ -7,16 +7,13 @@ const validateLogin = (user) => {
     password: Joi.string().min(8).max(30).presence("required"),
   })
     .required()
-    .validate(user, { abortEarly: false }).error;
-
+    .validate(user, { abortEarly: false }).error; 
   if (result) {
     const errorMessages = result.details.map((error) => ({
       message: error.message,
     }));
-
     return { errorCount: result.details.length, errorMessages }; //* on renvoie le nombre d'erreurs et les messages d'erreurs
   }
-
   return result;
 };
 

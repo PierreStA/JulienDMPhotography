@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import pictureApi from "../services/pictureApi";
 import { toast } from "react-toastify";
+import schema from "../Validator/picture.validator";
 
 function AdminDeleteUpdate() {
   const [photo, setPhoto] = useState("");
@@ -20,7 +21,7 @@ function AdminDeleteUpdate() {
   const handleUpdate = (e) => {
     //* update la description  de la picture via son id
     e.preventDefault();
-    if (description && photo) {
+    schema.validate({ description, photo }).then(() => {
       pictureApi
         .put(`api/product/${idProduct}`, {
           description,
@@ -30,9 +31,7 @@ function AdminDeleteUpdate() {
           toast.success("Picture updated");
         })
         .catch((err) => console.log(err.response.data));
-    } else {
-      alert("Please specify a description and a photo");
-    }
+    });
   };
 
   const HandleDeleteProduct = (e) => {
@@ -51,10 +50,7 @@ function AdminDeleteUpdate() {
   }
 
   return (
-    <form
-      className="bg-gray-800 px-6 py-4 mt-6 shadow-xl border-solid sm:max-w-md sm:rounded-lg mb-10 flex flex-col items-center "
-      onSubmit={handleUpdate}
-    >
+    <form className="bg-gray-800 px-6 py-4 mt-6 shadow-xl border-solid sm:max-w-md sm:rounded-lg mb-10 flex flex-col items-center ">
       <label
         htmlFor="text"
         className="block text-sm font-medium text-gray-400 "
@@ -67,8 +63,6 @@ function AdminDeleteUpdate() {
         name="description"
         className="block w-2/3 rounded-md"
         id="description"
-        minLength="4" //* set min and max length of description
-        maxLength="100"
         size="80"
       />
       <label htmlFor="text" className="text-sm font-medium text-gray-400 mt-4">

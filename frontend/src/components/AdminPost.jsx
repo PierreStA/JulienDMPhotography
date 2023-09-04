@@ -1,21 +1,22 @@
 import React, { useState } from "react";
-import * as yup from "yup";
+// import * as yup from "yup";
 import pictureApi from "../services/pictureApi";
 import { toast } from "react-toastify";
+import schema from "../Validator/picture.validator";
 
 function AdminPost() {
   const [photo, setPhoto] = useState("");
   const [description, setDescription] = useState("");
 
-  const schema = yup.object({
-    //* utiliser yup pour valider le formulaire
-    description: yup
-      .string()
-      .min(4, "Description must be at least 4 characters")
-      .max(500, "Description can't exceed 500 characters")
-      .required("Description is required"),
-    photo: yup.string().required("Photo is required"),
-  });
+  // const schema = yup.object({
+  //   //* utiliser yup pour valider le formulaire
+  //   description: yup
+  //     .string()
+  //     .min(4, "Description must be at least 4 characters")
+  //     .max(255, "Description can't exceed 255 characters")
+  //     .required("Description is required"),
+  //   photo: yup.string().required("Photo is required"),
+  // });
 
   const handleSubmit = (e) => {
     //* verifie si le formulaire est valide et post la picture
@@ -39,10 +40,7 @@ function AdminPost() {
   };
 
   return (
-    <form
-      className="bg-gray-800 px-6 py-4 mt-6 shadow-xl border-solid w-full md:w-1/4 rounded-lg mb-10 flex flex-col items-center "
-      onSubmit={handleSubmit}
-    >
+    <form className="bg-gray-800 px-6 py-4 mt-6 shadow-xl border-solid w-full md:w-1/4 rounded-lg mb-10 flex flex-col items-center ">
       <label
         htmlFor="description"
         className="block text-sm font-medium text-gray-400"

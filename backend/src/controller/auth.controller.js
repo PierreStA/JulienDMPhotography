@@ -4,18 +4,17 @@ const { encodeJWT } = require("../helper/jwt.helper.js");
 const validateLogin = require("../validator/login.validator.js");
 
 
-
 const login = async (req, res, next) => {
   try {
     const errors = validateLogin(req.body); //* on verifie que les données envoyé par le user sont correctes
-    if (errors) return res.status(401).send(errors);//* si il y a des erreurs on les renvoie
+    if (errors) return res.status(401).send(errors);
     const [user] = await findByEmail(req.body.email);//* on cherche l'utilisateur dans la base de donnée avec le model findByEmail 
-    if (!user) return res.status(401).send("Invalid Credentials"); //* si l'utilisateur n'existe pas on renvoie une erreur
+    if (!user) return res.status(401).send("Invalid Credentials"); 
     const passwordVerification = await verifyPassword( //* on verifie que le mot de passe est correcte avec le helper argon 
       user.password, 
       req.body.password 
     );
-    if (!passwordVerification)  //* si le mot de passe est incorrect on renvoie une erreur
+    if (!passwordVerification)  
      return res.status(401).send("Invalid Credentials");
     delete user.password;    //* on supprime le mot de passe de l'utilisateur
     const token = encodeJWT(user); //* on encode le token avec le helper jwt
