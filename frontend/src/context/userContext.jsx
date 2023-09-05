@@ -1,29 +1,22 @@
 import { createContext, useContext, useState } from "react";
 
-const CurrentUserContext = createContext();
+const CurrentUserContext = createContext(); //* création du context
 
+//* création du hook pour utiliser le context dans les composants enfants
 export const userCurrentContext = () => useContext(CurrentUserContext);
 
+//* création du provider pour fournir le context aux composants enfants
+//*children = composants enfants
 export const UserContextProvider = ({ children }) => {
-  const [name, setName] = useState(JSON.parse(localStorage.getItem("name")));
-  const [userEmail, setUserEmail] = useState(
-    JSON.parse(localStorage.getItem("email"))
-  );
+  //* recupere le userRole du local storage et le stocke dans le state
   const [userRole, setUserRole] = useState(
     JSON.parse(localStorage.getItem("userRole"))
   );
 
-  const [userId, setUserId] = useState(localStorage.getItem("userId"));
-  console.log(userRole);
   return (
+    //* fournit le context aux composants enfants
     <CurrentUserContext.Provider
       value={{
-        name,
-        setName,
-        userEmail,
-        setUserEmail,
-        userId,
-        setUserId,
         userRole,
         setUserRole,
       }}

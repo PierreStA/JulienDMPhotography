@@ -23,6 +23,7 @@ const login = async (req, res, next) => {
     //* (en prod passer secure a True et donner un nom moins explicite au cookie)
     res.status(200).json({username:user.name, roles:user.roles}) //* on renvoie le nom et les roles de l'utilisateur 
   } catch (e) {
+    console.error(e);
     res.sendStatus(500);
   }
 };

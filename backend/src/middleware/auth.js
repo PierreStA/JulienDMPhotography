@@ -12,6 +12,7 @@ const authorization = async (req, res, next ) => {
         req.userName=data.name; //* on ajoute le nom de l'utilisateur dans la requete
         return next(); 
     }catch(e) {
+        console.error(e.message);
         res.sendStatus(401);
     }
 };
