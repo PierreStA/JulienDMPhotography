@@ -1,6 +1,6 @@
 const { decodeJWT } = require ("../helper/jwt.helper.js");
 
-//* middleware qui verifie que l'utilisateur est authaurisé a faire la requete
+//* middleware qui verifie que l'utilisateur est autorisé a faire la requete
 const authorization = async (req, res, next ) => { 
     
     try{

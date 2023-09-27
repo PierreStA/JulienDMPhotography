@@ -4,7 +4,7 @@ const cookieParser = require ("cookie-parser");
 const path = require("path");
 const cors = require("cors");
 
-const router=require("./router"); //* on importe le router
+const router=require("./router"); 
 
 const app = express(); 
 

@@ -38,15 +38,15 @@ const deleteProduct = async function (req, res) {
   try {
     const productId = req.params.id; //* on recupere l'id du produit  a supprimer 
     const [result] = await deleteOne(productId); //* on supprime le produit avec l'id recupere 
-    res.status(200).json({ message: `Le produit avec l'ID ${productId} a été supprimé.` });
+
     if (result.affectedRows === 0) { //* si le produit n'existe pas on renvoie une erreur 404
-      res.sendStatus(404);
+      res.status(404).json({ message: `Le produit avec l'ID ${productId} n'existe pas.` });
     } else {
-      res.sendStatus(204);
+      res.status(204).json({ message: `Le produit avec l'ID ${productId} a été supprimé.` });
     }
   } catch (error) {
     console.error(error);
-    res.sendStatus(500);
+    res.status(500).json({ error: 'Une erreur est survenue lors de la suppression du produit.' });
   }
 };
 
