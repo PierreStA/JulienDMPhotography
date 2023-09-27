@@ -17,24 +17,20 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (email && password) {
-      pictureAPI.post("/api/login", { email, password }).then((res) => {
-        const role = { roles: JSON.parse(res.data.roles) };
-
-        setUserRole(role);
-
-        localStorage.setItem("userRole", JSON.stringify(role));
-        // console.log(res.data.email);
-        console.log(name);
-        // console.log(localStorage.getItem("userRole"));
-        toast.success("Welcome back !");
-        navigate("/");
-      });
-      // .catch(
-      //   (err) => console.log(err.response.data),
-      //   toast.error("Please specify email and password")
-      // );
+      pictureAPI
+        .post("/api/login", { email, password })
+        .then((res) => {
+          const role = { roles: JSON.parse(res.data.roles) }; //* parse les rôles de l'utilisateur connecté en JSON
+          setUserRole(role);
+          localStorage.setItem("userRole", JSON.stringify(role)); //* stocke les rôles de l'utilisateur connecté dans le local storage
+          toast.success("Welcome back !");
+          navigate("/");
+        })
+        .catch((error) => {
+          toast.error("Invalid email or password");
+          alert("Invalid email or password");
+        });
     } else {
       toast.error("Please specify email and password");
       alert("Please specify email and password");

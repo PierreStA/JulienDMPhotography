@@ -7,8 +7,11 @@ import { toast } from "react-toastify";
 
 export default function NavBar() {
   const { setUserRole } = userCurrentContext();
+  const userRoleObject = JSON.parse(localStorage.getItem("userRole")); //* Récupération de l'objet de rôle
+  const userRoles = userRoleObject.roles || []; //* Récupération des rôles de l'utilisateur connecté ou un tableau vide si pas de rôles (cas d'un utilisateur non connecté)
   const [navbar, setNavbar] = useState(false);
   const navigate = useNavigate();
+
   const handleDisconnection = () => {
     pictureAPI
       .get("/api/logout")
@@ -20,10 +23,10 @@ export default function NavBar() {
       )
       .catch((err) => console.log(err));
   };
-  // console.log(localStorage.getItem("userRole"));
+  console.log(userRoles);
   return (
     <nav className="w-full bg-dark shadow">
-      <div className="justify-between mr-10   md:items-center md:flex md:my-auto">
+      <div className="justify-between md:mr-10 md:items-center md:flex md:my-auto">
         <div>
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
             <NavLink
@@ -37,7 +40,7 @@ export default function NavBar() {
               </strong>
               Photography
             </NavLink>
-            <div className="md:hidden lg:hidden ">
+            <div className="md:hidden  ">
               <button
                 className="p-2  rounded-md outline-none focus:border-gray-400 focus:border"
                 onClick={() => setNavbar(!navbar)}
@@ -77,53 +80,49 @@ export default function NavBar() {
         </div>
         <div>
           <div
-            className={` justify-self-center pb-3 mt-4 md:block  ${
+            className={` justify-self-center pb-3 mt-4 md:block ${
               navbar ? "block  " : "hidden "
             }`}
           >
-            <nav className=" space-y-8 flex flex-col items-center justify-center md:flex-row md:space-x-6 md:space-y-0 text-lg">
+            <nav className="space-y-8 flex flex-col items-center justify-center md:flex-row md:space-x-12 md:space-y-0 text-lg flex-wrap">
               <NavLink
                 to="/"
-                className="text-white hover:text-indigo-200  w-full text-center "
+                className="text-white hover:text-indigo-200 text-center whitespace-nowrap"
               >
                 Home
               </NavLink>
               <NavLink
                 to="/picturelist"
-                className="text-white hover:text-indigo-200 w-full text-center"
+                className="text-white hover:text-indigo-200 text-center whitespace-nowrap"
               >
                 Pictures
               </NavLink>
-              {/* <NavLink
-                to="/price"
-                className="text-white hover:text-indigo-200 w-full text-center"
-              >
-                Pricing
-              </NavLink> */}
               <NavLink
-                to="/order"
-                className="text-white hover:text-indigo-200 w-full text-center"
+                to="/about-me"
+                className="text-white hover:text-indigo-200 text-center whitespace-nowrap"
+              >
+                About me
+              </NavLink>
+              <NavLink
+                to="/contact"
+                className="text-white hover:text-indigo-200 text-center whitespace-nowrap"
               >
                 Contact
               </NavLink>
-              <NavLink
-                to="/faq"
-                className="text-white hover:text-indigo-200 w-full text-center"
-              >
-                Faq
-              </NavLink>
-              <NavLink
-                to="/admin"
-                className="text-white hover:text-indigo-200 w-full text-center"
-              >
-                Admin
-              </NavLink>
+              {userRoles.includes("admin") && (
+                <NavLink
+                  to="/admin"
+                  className="text-white hover:text-indigo-200 text-center whitespace-nowrap"
+                >
+                  Admin
+                </NavLink>
+              )}
             </nav>
-            <div className="mt-3 space-y-2 flex flex-col items-center justify-center md:hidden">
-              <div className=" w-[80%] px-4 py-2 text-center text-white bg-gray-600 rounded-md shadow hover:bg-gray-800">
+            <div className="mt-3 flex flex-col items-center   md:hidden">
+              <div className=" w-[80%] px-4 py-2 text-center text-white bg-gray-600 rounded-md shadow hover:bg-gray-800 mb-4">
                 <NavLink to="/login">Sign in</NavLink>
               </div>
-              <div className="px-4 py-2 w-[80%] text-center text-gray-800 bg-gray-400 rounded-md shadow hover:bg-gray-500">
+              <div className="px-4 py-2 w-[80%] text-center text-gray-800 bg-gray-400 rounded-md shadow hover:bg-gray-500 mb-4">
                 <NavLink to="/signup">Sign up</NavLink>
               </div>
               <div

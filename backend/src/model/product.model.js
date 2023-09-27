@@ -1,34 +1,30 @@
 const db =require("./db.js");
 
-const findAll= async ()=> {
+const findAll= async ()=> { 
     try{
-        const [products] = await db.query("select * from `product`");
-
+        const [products] = await db.query("select * from `product`"); 
         return products;
     }catch(e){
         console.log(e);
     }
 };
 
-const findOne= async (id)=> {
+const findOne= async (id)=> { //* id = id du produit
     try{
         const [product] = await db.query("select * from `product` where id = ? ", [id]);
-
-        return product;
+        return product; 
     }catch(e){
-        console.log(e);
+        console.log(e); 
     }
 };
 
 const addOne = async (product) => {
-
     try{
-
-        const{ description, price, photo } = product
-        const [result] = await db.query("insert into `product` (description, photo) values (?,?)", [product.description, product.photo]
+        const{ description, photo } = product 
+        const [result] = await db.query("insert into `product` (description, photo) values (?,?)", [product.description, product.photo] 
         );
 
-    return { id: result.insertId,description, photo  };  /*id: result.insertId clé SQL2 qui renvoie l'id de lutilisateur crée */
+    return { id: result.insertId,description, photo};  //*id: result.insertId clé SQL2 qui renvoie l'id du produit crée
     } catch (error) {
         throw new Error(`Impossible de créer le produit: ${error}`);
     }

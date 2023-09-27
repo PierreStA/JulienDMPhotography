@@ -1,75 +1,69 @@
 const { findAll, findOne, addOne, updateOne, deleteOne} = require("../model/product.model.js");
 
-const getAll = async(req,res, next)=>{
+const getAll = async(req,res, )=>{
     try{ 
-        const products = await findAll();
-        
+        const products = await findAll(); //* on recupere tous les produits      
         res.send(products);
-    } catch(e){
-        next(e);
+    }catch(error){
+        console.error(error);
+    res.sendStatus(500);
     }
-
 };
 
-const getOne = async(req,res,next) =>{
+const getOne = async(req,res) =>{
     
     try{
-        const productId= parseInt(req.params.id);
-
-        if (isNaN(productId)) throw new Error();
-
-        const [product] = await findOne(productId);
-        res.send(product);
-    }catch(e){
-        next(e);
+        const productId= parseInt(req.params.id); //* on recupere l'id du produit dans l'url et on le convertit en nombre entier
+        const [product] = await findOne(productId); //* on utilise le model pour recuperer le produit avec l'id recupere
+        res.send(product); //* on renvoie le produit
+    }catch(error){
+        console.error(error);
+    res.sendStatus(500);
     }
 };
 
 
-
-const createOne = async (req, res, next) => {
+const createOne = async (req, res) => {
   try {
-    const product = req.body;
-    const newProduct = await addOne(product);
-    res.status(201).json(newProduct);
+    const product = req.body; //* on recupere le produit dans le body de la requete
+    const newProduct = await addOne(product); //* on utilise le model pour creer le produit
+    res.status(201).json(newProduct);//* on renvoie le produit en json avec le code 201
   } catch (error) {
-    next(error);
+    console.error(error);
+    res.sendStatus(500);
   }
 };
 
-const deleteProduct = async function (req, res, next) {
+const deleteProduct = async function (req, res) {
   try {
-    const productId = req.params.id;
-    const [result] = await deleteOne(productId);
-    res.status(200).json({ message: `Le produit avec l'ID ${productId} a été supprimé.` });
-    if (result.affectedRows === 0) {
-      res.sendStatus(404);
+    const productId = req.params.id; //* on recupere l'id du produit  a supprimer 
+    const [result] = await deleteOne(productId); //* on supprime le produit avec l'id recupere 
+
+    if (result.affectedRows === 0) { //* si le produit n'existe pas on renvoie une erreur 404
+      res.status(404).json({ message: `Le produit avec l'ID ${productId} n'existe pas.` });
     } else {
-      res.sendStatus(204);
+      res.status(204).json({ message: `Le produit avec l'ID ${productId} a été supprimé.` });
     }
   } catch (error) {
-    next(error);
+    console.error(error);
+    res.status(500).json({ error: 'Une erreur est survenue lors de la suppression du produit.' });
   }
 };
 
 const editOne = async (req, res) => {
   try {
     const product = req.body;
-    product.id = parseInt(req.params.id, 10);
-
-    const [result] = await updateOne(product);
-
-    if (result.affectedRows === 0) {
+    product.id = parseInt(req.params.id, 10);//* on recupere l'id du produit et on le convertit en nombre entier
+    const [result] = await updateOne(product);//* on met a jour le produit 
+    if (result.affectedRows === 0) { 
       res.sendStatus(404);
     } else {
       res.sendStatus(204);
     }
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
     res.sendStatus(500);
   }
 };
-
-
 
 module.exports ={getAll, getOne,createOne, editOne, deleteProduct};

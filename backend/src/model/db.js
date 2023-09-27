@@ -1,9 +1,9 @@
 const mysql= require("mysql2/promise");
 
 
-const { DB_HOST, DB_USER,DB_PASSWORD, DB_NAME } =process.env;
+const { DB_HOST, DB_USER,DB_PASSWORD, DB_NAME } =process.env; //* on recupere les variables d'environnement
 
-const pool=mysql.createPool({
+const pool=mysql.createPool({ //* on cree un pool de connexion a la bdd
     host:DB_HOST,
     user:DB_USER,
     password:DB_PASSWORD,
